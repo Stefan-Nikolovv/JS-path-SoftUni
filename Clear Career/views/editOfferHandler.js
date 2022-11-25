@@ -70,7 +70,7 @@
     let salary = data.get("salary").trim();
 
     if(title == "" || imageUrl == "" || category == "" || description == "" || requirements == "" || salary == ""){
-        alert(`All fields should be filled.`);
+        window.alert(`All fields should be filled.`);
     }else{
         api.edit(ctx.params.postId,title,imageUrl,category,description,requirements,salary).then(() => ctx.page.redirect(`/offers/${ctx.params.postId}`)) ;
     }

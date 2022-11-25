@@ -29,11 +29,12 @@ html `
                 >
               </div>
             </div>
-            <div id="action-buttons">
+            
 
-            ${isOwner ? html` 
+            ${isOwner ? html` <div id="action-buttons">
               <a href="${res._id}/edit" id="edit-btn">Edit</a>
-              <a href="${res._id}/delete" id="delete-btn">Delete</a> ` : 
+              <a href="${res._id}/delete" id="delete-btn">Delete</a>
+              </div>` : 
               html`<p>Applications: <strong id="applications">1</strong></p>
                   <a @click=${e => onApply(e, ctx)} id="apply-btn">Apply</a>
               `} 
@@ -57,9 +58,7 @@ html`
             <div id="info-wrapper">
               <div id="details-description">
                 <h4>Description</h4>
-                <span
-                  >"${res.description}"</span
-                >
+                <span>"${res.description}"</span>
               </div>
               <div id="details-requirements">
                 <h4>Requirements</h4>
@@ -102,3 +101,47 @@ function onApply(e,ctx) {
   api.allApply(ctx.params.postId).then(() => console.log('all'))
   api.getOfferCount(ctx.params.postId,ctx.user._id).then(res => console.log(res))
 }
+
+
+html`
+<!-- Details page -->
+<section id="details">
+          <div id="details-wrapper">
+            <img id="details-img" src="./images/example2.png" alt="example1" />
+            <p id="details-title">Senior Frontend Software Engineer</p>
+            <p id="details-category">
+              Category: <span id="categories">IT, Developer, WEB</span>
+            </p>
+            <p id="details-salary">
+              Salary: <span id="salary-number">7000</span>
+            </p>
+            <div id="info-wrapper">
+              <div id="details-description">
+                <h4>Description</h4>
+                <span></span
+                >
+              </div>
+              <div id="details-requirements">
+                <h4>Requirements</h4>
+                <span
+                  >Degree in computer science or related field. Understanding of
+                  key design principles. Proficiency in HTML, CSS, JavaScript.
+                  Experience with responsive and adaptive design. Good
+                  problem-solving skills. Excellent verbal communication skills.
+                  Good interpersonal skills.</span
+                >
+              </div>
+            </div>
+            <p>Applications: <strong id="applications">1</strong></p>
+
+            <!--Edit and Delete are only for creator-->
+            <div id="action-buttons">
+              <a href="" id="edit-btn">Edit</a>
+              <a href="" id="delete-btn">Delete</a>
+
+              <!--Bonus - Only for logged-in users ( not authors )-->
+              <a href="" id="apply-btn">Apply</a>
+            </div>
+          </div>
+        </section>
+`
