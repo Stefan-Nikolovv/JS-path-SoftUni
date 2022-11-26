@@ -47,7 +47,7 @@ export const logout = () =>
   });
 
 export async function dashboardView(){ 
- return  request.get(`${dataUrl}/?sortBy=_createdOn%20desc`)}
+ return  request.get(`${dataUrl}?sortBy=_createdOn%20desc`)}
 export const getOneItem = (postId) => request.get(`${dataUrl}/${postId}`);
 
 export const create = (
@@ -87,8 +87,8 @@ export const edit = (
 
   export const del = (postId) => request.del(`${dataUrl}/${postId}`).then(res => new Date(res));
 
-  export const apply =(postId) => request.post(`${applyUrl}/applications`,{postId});
+  export const apply =(offerId) => request.post(`${applyUrl}/applications`, {offerId});
 
-  export const allApply =(postId)=> request.get(`${applyUrl}/applications?where=offerId%3D%22${postId}%22&distinct=_ownerId&count`).then(res => console.log(res))
+  export const allApply =(postId)=> request.get(`${applyUrl}/applications?where=offerId%3D%22${postId}%22&distinct=_ownerId&count`)
 
   export const getOfferCount = (postId,userId) => request.get(`${applyUrl}/applications?where=offerId%3D%22${postId}}%22%20and%20_ownerId%3D%22${userId}%22&count`)

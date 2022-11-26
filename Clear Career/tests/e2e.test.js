@@ -3,8 +3,8 @@ const { expect } = require("chai");
 
 const host = "http://localhost:3000"; // Application host (NOT service host - that can be anything)
 const interval = 600;
-const DEBUG = true;
-const slowMo = 15000;
+const DEBUG = false;
+const slowMo = 500;
 
 const mockData = require("./mock-data.json");
 
@@ -260,7 +260,6 @@ describe("E2E tests", function () {
       const { get } = await handle(endpoints.catalog);
       get(mockData.catalog.slice(0, 2));
       const data = mockData.catalog.slice(0, 2);
-      console.log(data)
       await page.goto(host);
       await page.waitForTimeout(interval);
       await page.click("nav >> text=Dashboard");
@@ -303,7 +302,7 @@ describe("E2E tests", function () {
       const salaries = await page.$$eval(".offer p .salary", (t) =>
         t.map((s) => s.textContent)
       );
-
+      console.log(titles);
       expect(titles).to.contains(`${data[0].title}`);
       expect(salaries).to.contains(`${data[0].salary}`);
     });
@@ -339,11 +338,10 @@ describe("E2E tests", function () {
       expect(isCalled()).to.be.false;
     });
 
-    it.only("Create makes correct API call for logged in user [ 2.5 Points ]", async () => {
+    it("Create makes correct API call for logged in user [ 2.5 Points ]", async () => {
       const data = mockData.catalog[0];
       const { post } = await handle(endpoints.create);
       const { onRequest } = post(data);
-      console.log(onRequest);
       await page.click("text=Create Offer");
       await page.waitForTimeout(interval);
 
@@ -375,7 +373,6 @@ describe("E2E tests", function () {
       const user = mockData.users[0];
       const { get } = await handle(endpoints.details(data._id));
       get(data);
-
       await page.waitForTimeout(interval);
       await page.click("text=Dashboard");
 
@@ -384,7 +381,7 @@ describe("E2E tests", function () {
       const { get: total } = await handle(endpoints.total(data._id));
       own(0);
       total(5);
-
+      
       await page.waitForTimeout(interval);
 
       await page.waitForSelector("#dashboard");

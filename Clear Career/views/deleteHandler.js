@@ -8,7 +8,7 @@ export const deleteHandler =(ctx) => {
      if(conf){
          api.del(ctx.params.postId).then(() => ctx.page.redirect('/dashboard'))
      }else{
-        ctx.page.redirect(`/offers/${ctx.params.postId}`);
+        ctx.page.redirect(`/details/${ctx.params.postId}`);
      }
     }
 }

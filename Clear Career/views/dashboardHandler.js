@@ -4,13 +4,13 @@ import * as api from '../api.js'
 
 const postTemplate = (offer) => html`
   <div class="offer">
-            <img src= "${offer.imageUrl}" alt="example1" />
+            <img src= ${offer.imageUrl} alt="example1" />
             <p>
-              <strong>Title: </strong><span class="title">"${offer.title}"</span>
+              <strong>Title: </strong><span class="title">${offer.title}</span>
             </p>
-            <p><strong>Salary:</strong><span class="salary">"${offer.salary}"</span></p>
+            <p><strong>Salary:</strong><span class="salary">${offer.salary}</span></p>
             
-            <a class="details-btn" href="/offers/${offer._id}">Details</a>
+            <a class="details-btn" href="/details/${offer._id}">Details</a>
           </div>
           <!-- <div class="offer">
             <img src="./images/example2.png" alt="example2" />

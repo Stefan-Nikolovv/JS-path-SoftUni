@@ -10,21 +10,21 @@
               <input
                 type="text"
                 name="title"
-                value = ${post.title}
+                .value = ${post.title}
                 id="job-title"
                 placeholder="Title"
               />
               <input
                 type="text"
                 name="imageUrl"
-                value = ${post.imageUrl}
+                .value = ${post.imageUrl}
                 id="job-logo"
                 placeholder="Company logo url"
               />
               <input
                 type="text"
                 name="category"
-                value = ${post.category}
+                .value = ${post.category}
                 id="job-category"
                 placeholder="Category"
               />
@@ -47,7 +47,7 @@
               <input
                 type="text"
                 name="salary"
-                value = ${post.salary}
+                .value = ${post.salary}
                 id="job-salary"
                 placeholder="Salary"
               />
@@ -72,7 +72,7 @@
     if(title == "" || imageUrl == "" || category == "" || description == "" || requirements == "" || salary == ""){
         window.alert(`All fields should be filled.`);
     }else{
-        api.edit(ctx.params.postId,title,imageUrl,category,description,requirements,salary).then(() => ctx.page.redirect(`/offers/${ctx.params.postId}`)) ;
+        api.edit(ctx.params.postId,title,imageUrl,category,description,requirements,salary).then(() => ctx.page.redirect(`/details/${ctx.params.postId}`)) ;
     }
 
     }

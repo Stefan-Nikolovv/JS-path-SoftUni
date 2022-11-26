@@ -9,7 +9,7 @@ import {createOfferHandler} from "../views/createOfferHandler.js"
 import { detailsHandler } from "../views/detailsHandler.js";
 import { editOfferHandler } from "../views/editOfferHandler.js";
 import{deleteHandler} from "../views/deleteHandler.js";
-import { applyHandler } from "../views/applyHandler.js";
+
 
 
 page(loginNavigate);
@@ -21,8 +21,8 @@ page('/register', registerHandler);
 page('/logout',logoutHandler)
 page('/dashboard', dashboardHandler);
 page('/create', createOfferHandler );
-page("/offers/:postId",detailsHandler);
-page('/offers/:postId/edit', editOfferHandler)
-page('/offers/:postId/delete', deleteHandler);
-page('/offers/:postId/apply', applyHandler);
+page("/details/:postId",detailsHandler);
+page('/details/:postId/edit', editOfferHandler)
+page('/details/:postId/delete', deleteHandler);
+
  page.start();
