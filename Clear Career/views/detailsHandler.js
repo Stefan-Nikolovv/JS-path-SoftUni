@@ -36,7 +36,7 @@ html `
               <a href="${res._id}/delete" id="delete-btn">Delete</a>
               </div>` : 
               html`<div id="action-buttons">
-                  <p>Applications: <strong id="applications">1</strong></p>
+                  <p>Applications: <strong id="applications">${ctx.numOfApply}</strong></p>
                   <a @click=${e => onApply(e, ctx)} id="apply-btn">Apply</a>
                   </div>
               `} 
@@ -70,7 +70,7 @@ html`
               </div>
              
             </div>
-            <p>Applications: <strong id="applications">1</strong></p>
+            <p>Applications: <strong id="applications">${ctx.numOfApply}</strong></p>
           </div>
         </section>
 
@@ -80,7 +80,11 @@ html`
 `
 
 export const detailsHandler = ( ctx ) =>{
-api.getOneItem(ctx.params.postId).then(res => {
+api.getOneItem(ctx.params.postId).then(async(res) => {
+  ctx.numOfApply = await api.allApply(ctx.params.postId);
+  console.log(ctx.numOfApply);
+  ctx.AllAplly =  await api.getOfferCount(ctx.params.postId,ctx.user._id);
+  console.log(ctx.AllAplly);
   let isOwner = false;
   let logged = false;
   if(ctx.user != undefined){
@@ -94,15 +98,12 @@ api.getOneItem(ctx.params.postId).then(res => {
     ctx.render(detailTemplate(res,isOwner,logged,ctx))})
 }
 
-function onApply(e,ctx) {
+async function onApply(e,ctx) {
   e.preventDefault();
   if(e){
     e.target.style.display = 'none';
-    api.apply(ctx.params.postId);
+    api.apply(ctx.params.postId).then(() => ctx.page.redirect(`/details/${ctx.params.postId}`))
   }
-  ctx.num =  api.allApply(ctx.params.postId).then(res => console.log(res))
- console.log(ctx.num);
-  api.getOfferCount(ctx.params.postId,ctx.user._id).then(res => console.log(res))
 }
 
 

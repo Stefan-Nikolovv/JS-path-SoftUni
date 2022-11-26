@@ -740,7 +740,7 @@ describe("E2E tests", function () {
       expect(await page.isVisible("#apply-btn")).to.be.false;
     });
 
-    it("Apply button should increase total applications by 1 after a click on it [ 2.5 Points ]", async () => {
+    it.only("Apply button should increase total applications by 1 after a click on it [ 2.5 Points ]", async () => {
       // Login user
       const user = mockData.users[0];
       const data = mockData.catalog[2];
