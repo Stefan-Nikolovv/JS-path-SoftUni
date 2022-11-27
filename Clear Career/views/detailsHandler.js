@@ -37,8 +37,8 @@ html `
               <a href="${res._id}/edit" id="edit-btn">Edit</a>
               <a href="${res._id}/delete" id="delete-btn">Delete</a>
               </div>` : 
-              html`<div id="action-buttons">
-                  <p>Applications: <strong id="applications">${ctx.numOfApply}</strong></p>
+              html`<p>Applications: <strong id="applications">${ctx.numOfApply}</strong></p>
+                  <div id="action-buttons"> 
                   ${ctx.AllAplly > 0 ? html``:
                   html`<a @click=${e => onApply(e, ctx)} id="apply-btn">Apply</a>` 
                 }
@@ -75,7 +75,7 @@ html`
               </div>
              
             </div>
-            <p>Applications: <strong id="applications">${ctx.numOfApply}</strong></p>
+            <p>Applications: <strong id="applications">0</strong></p>
           </div>
         </section>
 
