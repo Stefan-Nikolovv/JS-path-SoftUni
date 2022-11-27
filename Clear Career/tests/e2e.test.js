@@ -4,7 +4,7 @@ const { expect } = require("chai");
 const host = "http://localhost:3000"; // Application host (NOT service host - that can be anything)
 const interval = 600;
 const DEBUG = false;
-const slowMo = 500;
+const slowMo = 1000;
 
 const mockData = require("./mock-data.json");
 
@@ -302,7 +302,6 @@ describe("E2E tests", function () {
       const salaries = await page.$$eval(".offer p .salary", (t) =>
         t.map((s) => s.textContent)
       );
-      console.log(titles);
       expect(titles).to.contains(`${data[0].title}`);
       expect(salaries).to.contains(`${data[0].salary}`);
     });
@@ -740,7 +739,7 @@ describe("E2E tests", function () {
       expect(await page.isVisible("#apply-btn")).to.be.false;
     });
 
-    it.only("Apply button should increase total applications by 1 after a click on it [ 2.5 Points ]", async () => {
+    it("Apply button should increase total applications by 1 after a click on it [ 2.5 Points ]", async () => {
       // Login user
       const user = mockData.users[0];
       const data = mockData.catalog[2];

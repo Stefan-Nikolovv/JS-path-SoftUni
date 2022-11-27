@@ -1,5 +1,5 @@
 import { html } from "../node_modules/lit-html/lit-html.js";
-import * as api from '../api.js';
+import * as api from "../src/api.js";
 
 const editTemplate = (post,onSubmit) => html`
 

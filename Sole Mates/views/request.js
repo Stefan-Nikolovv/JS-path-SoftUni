@@ -1,4 +1,4 @@
-import {getToken} from '../api.js';
+import { getToken } from "../src/api";
 
  const request = (method, url, data) => {
     let opitions = {};

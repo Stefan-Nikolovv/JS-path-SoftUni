@@ -30,14 +30,19 @@ html `
               </div>
             </div>
             
-
-            ${isOwner ? html` <div id="action-buttons">
+            
+            ${isOwner ? html` 
+            <p>Applications: <strong id="applications">${ctx.numOfApply}</strong></p>
+            <div id="action-buttons">
               <a href="${res._id}/edit" id="edit-btn">Edit</a>
               <a href="${res._id}/delete" id="delete-btn">Delete</a>
               </div>` : 
               html`<div id="action-buttons">
                   <p>Applications: <strong id="applications">${ctx.numOfApply}</strong></p>
-                  <a @click=${e => onApply(e, ctx)} id="apply-btn">Apply</a>
+                  ${ctx.AllAplly > 0 ? html``:
+                  html`<a @click=${e => onApply(e, ctx)} id="apply-btn">Apply</a>` 
+                }
+                  
                   </div>
               `} 
               
@@ -82,15 +87,16 @@ html`
 export const detailsHandler = ( ctx ) =>{
 api.getOneItem(ctx.params.postId).then(async(res) => {
   ctx.numOfApply = await api.allApply(ctx.params.postId);
-  console.log(ctx.numOfApply);
-  ctx.AllAplly =  await api.getOfferCount(ctx.params.postId,ctx.user._id);
-  console.log(ctx.AllAplly);
+  
   let isOwner = false;
   let logged = false;
   if(ctx.user != undefined){
     logged = true;
+    
   }
     if(ctx.user != undefined){
+      ctx.AllAplly =  await api.getOfferCount(ctx.params.postId,ctx.user._id);
+      
     if(ctx.user._id == res._ownerId){
         isOwner = true;
     }
@@ -100,10 +106,8 @@ api.getOneItem(ctx.params.postId).then(async(res) => {
 
 async function onApply(e,ctx) {
   e.preventDefault();
-  if(e){
-    e.target.style.display = 'none';
+ 
     api.apply(ctx.params.postId).then(() => ctx.page.redirect(`/details/${ctx.params.postId}`))
-  }
 }
 
 

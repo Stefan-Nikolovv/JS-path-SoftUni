@@ -1,6 +1,6 @@
 import { html } from "../node_modules/lit-html/lit-html.js";
 
-import * as api from "../api.js";
+import * as api from "../src/api.js";
 const postTemplate = (page) => html`
 <li class="card">
   <img src="${page.imageUrl}" alt="travis" />

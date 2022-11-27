@@ -222,7 +222,7 @@ describe("E2E tests", function () {
     });
   });
 
-  describe.only("Dashboard Page [ 15 Points ]", () => {
+  describe("Dashboard Page [ 15 Points ]", () => {
     it("Show Dashboard page - welcome message [ 2.5 Points ]", async () => {
       await page.goto(host);
       await page.waitForTimeout(interval);

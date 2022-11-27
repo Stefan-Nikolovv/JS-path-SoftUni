@@ -1,4 +1,4 @@
-import * as request from './src/request.js';
+import * as request from '../src/request.js';
 
 const baseURL = `http://localhost:3030/users`;
 const dashboardURL = `http://localhost:3030/data/shoes`;
@@ -43,7 +43,7 @@ export const logout = () =>
     fetch(`${baseURL}/logout`, { headers: { 'X-Authorization': getToken() } }).then(() => { deleteUser() })
 
 export async function dashboard() {
-  return  request.get(`${dashboardURL}/?sortBy=_createdOn%20desc`);
+  return  request.get(`${dashboardURL}?sortBy=_createdOn%20desc`);
 }
     
 

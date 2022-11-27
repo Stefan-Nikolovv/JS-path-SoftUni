@@ -1,5 +1,5 @@
 import { html } from "../node_modules/lit-html/lit-html.js";
-import * as api from '../api.js'
+import * as api from "../src/api.js";
 const registerTemplate = (onSubmit) => html`
   <section id="register">
     <div class="form">
