@@ -1,6 +1,7 @@
 import * as request from "../src/request.js";
 import * as data from '../authService/data.js'
 const baseUrl = 'http://localhost:3030/users';
+const dataUrl = 'http://localhost:3030/data';
 
 export const login = (email,password) => 
     request.post(`${baseUrl}/login`,{email,password}).then(user =>{
@@ -19,3 +20,5 @@ export const logout =()=> fetch(`${baseUrl}/logout`, {
     .then(() =>{
         data.deleteUser();
     });
+
+export async function dashboard (){return fetch(`${dataUrl}/pets?sortBy=_createdOn%20desc&distinct=name`)}

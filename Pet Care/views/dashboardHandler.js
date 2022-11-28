@@ -1,21 +1,29 @@
-import {html} from "../node_modules/lit-html/lit-html.js";
+import { html } from "../node_modules/lit-html/lit-html.js";
+import * as api from "../src/api.js";
 
-const dashboardTemplate = () => html`
-<section id="dashboard">
-            <h2 class="dashboard-title">Services for every animal</h2>
-            <div class="animals-dashboard">
+const postTemplate = (offer)=> html`
+<div class="animals-dashboard">
                 <div class="animals-board">
                     <article class="service-img">
-                        <img class="animal-image-cover" src="./images/cat2.jpg">
+                        <img class="animal-image-cover" src=${offer.imageUrl}>
                     </article>
-                    <h2 class="name">Athena</h2>
-                    <h3 class="breed">American Curl</h3>
+                    <h2 class="name">${offer.name}</h2>
+                    <h3 class="breed">${offer.breed}</h3>
                     <div class="action">
-                        <a class="btn" href="#">Details</a>
+                        <a class="btn" href="/details/${offer._id}">Details</a>
                     </div>
                 </div>
+`
 
-                <div class="animals-board">
+const dashboardTemplate = (offers) => html`
+<section id="dashboard">
+            <h2 class="dashboard-title">Services for every animal</h2>
+${
+  offers.length === 0 ? html`<h2>No offers yet.</h2>` : offers.map(postTemplate)
+};
+
+
+                <!-- <div class="animals-board">
                     <article class="service-img">
                         <img class="animal-image-cover" src="./images/dog2.jpg">
                     </article>
@@ -31,20 +39,20 @@ const dashboardTemplate = () => html`
                     <h2 class="name">Chibi</h2>
                     <h3 class="breed">Teddy guinea pig</h3>
                     <div class="action">
+                    <h2 class="name">Max</h2>
+                    <h3 class="breed">Shiba Inu</h3>
+                    <div class="action">
                         <a class="btn" href="#">Details</a>
+                    </div>
+                </div>       <a class="btn" href="#">Details</a>
                     </div>
                 </div>
 
                 <div class="animals-board">
                     <article class="service-img">
                         <img class="animal-image-cover" src="./images/Shiba-Inu.png">
-                    </article>
-                    <h2 class="name">Max</h2>
-                    <h3 class="breed">Shiba Inu</h3>
-                    <div class="action">
-                        <a class="btn" href="#">Details</a>
-                    </div>
-                </div>
+                    </article> -->
+                 
                 <!--If there is no pets in dashboard-->
                 <div>
                     <p class="no-pets">No pets in dashboard</p>
@@ -52,3 +60,8 @@ const dashboardTemplate = () => html`
             </div>
         </section>
 `;
+
+export async function dashBoardHandler(ctx) {
+  const offers = await api.dashboard();
+  ctx.render(dashboardTemplate(offers));
+}
