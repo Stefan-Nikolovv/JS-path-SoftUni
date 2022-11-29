@@ -2,10 +2,9 @@ import { html } from "../node_modules/lit-html/lit-html.js";
 import * as api from "../src/api.js";
 
 const postTemplate = (offer)=> html`
-<div class="animals-dashboard">
-                <div class="animals-board">
+<div class="animals-board">
                     <article class="service-img">
-                        <img class="animal-image-cover" src=${offer.imageUrl}>
+                        <img class="animal-image-cover" src=${offer.image}>
                     </article>
                     <h2 class="name">${offer.name}</h2>
                     <h3 class="breed">${offer.breed}</h3>
@@ -18,9 +17,12 @@ const postTemplate = (offer)=> html`
 const dashboardTemplate = (offers) => html`
 <section id="dashboard">
             <h2 class="dashboard-title">Services for every animal</h2>
+            <div class="animals-dashboard">
 ${
-  offers.length === 0 ? html`<h2>No offers yet.</h2>` : offers.map(postTemplate)
-};
+  offers.length === 0 ? html` <div>
+                    <p class="no-pets">No pets in dashboard</p>
+                </div>` : offers.map(postTemplate)
+}
 
 
                 <!-- <div class="animals-board">
@@ -54,14 +56,16 @@ ${
                     </article> -->
                  
                 <!--If there is no pets in dashboard-->
-                <div>
-                    <p class="no-pets">No pets in dashboard</p>
-                </div>
+               
             </div>
         </section>
 `;
 
-export async function dashBoardHandler(ctx) {
-  const offers = await api.dashboard();
-  ctx.render(dashboardTemplate(offers));
+export const dashBoardHandler = (ctx) => {
+    api.dashboard()
+    .then(offers =>{
+        
+        ctx.render(dashboardTemplate(offers));
+    })
+  
 }

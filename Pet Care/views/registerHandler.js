@@ -45,7 +45,7 @@
                 window.alert(`Password is not match!`);
             }else{
                 api.register(email,password)
-                .then(() => ctx.page.redirect("/home"))
+                .then(() => ctx.page.redirect("/"))
             }
 
         }

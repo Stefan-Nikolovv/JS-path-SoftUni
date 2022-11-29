@@ -21,4 +21,12 @@ export const logout =()=> fetch(`${baseUrl}/logout`, {
         data.deleteUser();
     });
 
-export async function dashboard (){return fetch(`${dataUrl}/pets?sortBy=_createdOn%20desc&distinct=name`)}
+export const dashboard= () => {return request.get(`${dataUrl}/pets?sortBy=_createdOn%20desc&distinct=name`)};
+
+export const create = (name,breed,age,weight,image) => request.post(`${dataUrl}/pets`,{name,breed,age,weight,image})
+
+export const getItem = (postId) =>  request.get(`${dataUrl}/pets/${postId}`);
+
+export const edit = (postId,name,breed,age,weight,image) => request.put(`${dataUrl}/pets/${postId}`, {name,breed,age,weight,image});
+
+export const del = (postId) => request.del(`${dataUrl}/pets/${postId}`).then(res => new Date(res));

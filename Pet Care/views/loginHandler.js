@@ -47,7 +47,7 @@ export const loginHandler = (ctx) => {
            alert('All Fileds are required!')
          }else{
            api.login(email,password)
-           .then(() => ctx.page.redirect('/home'));
+           .then(() => ctx.page.redirect('/'));
          }
    
        }
