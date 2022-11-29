@@ -44,7 +44,7 @@ export const loginHandler = (ctx) => {
         let email = data.get('email').trim();
         let password = data.get('password').trim();
          if(email == "" || password ==""){
-           alert('All Fileds are required!')
+           window.alert('All Fileds are required!')
          }else{
            api.login(email,password)
            .then(() => ctx.page.redirect('/'));
