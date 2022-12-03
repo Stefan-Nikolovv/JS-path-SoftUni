@@ -40,4 +40,12 @@ export const create = (title, category, maxLevel, imageUrl, summary) =>
     summary,
   });
 
-  export const getItem = (postId) =>  request.get(`${dataUrl}/games/${postId}`);
+export const getItem = (postId) => request.get(`${dataUrl}/games/${postId}`);
+
+export const edit = (postId, title, category, maxLevel, imageUrl, summary) => request.put(`${dataUrl}/games/${postId}`, { title, category, maxLevel, imageUrl, summary })
+
+export const del = (postId) => request.del(`${dataUrl}/games/${postId}`).then(res => new Date(res));
+
+export const getComment = (gameId) => request.get(`${dataUrl}/comments?where=gameId%3D%22${gameId}%22`);
+
+export const createComment = (gameId, comment) => request.post(`${dataUrl}/comments`,{gameId, comment});
