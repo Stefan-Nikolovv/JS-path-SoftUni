@@ -3,7 +3,7 @@ const router = require('express').Router();
 const { isAuth } = require('../middlewares/authMiddleWare');
 const publicationService = require('../services/publicationService');
 
-const errorHelper = require('../utils/errorHelpers');
+const { errorHelper } = require('../utils/errorHelpers');
 
 
 router.get('/catalog', async (req, res) => {
