@@ -4,22 +4,22 @@ const publicationSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, "Title is reqired!"],
-        min: [2,'Title length is at least 2 characters!']
+        minLength: [2,'Title length is at least 2 characters!']
     },
     author: {
         type: String,
         required: [true, "Author is reqired!"],
-        min: [5,'Title length is at least 5 characters!']
+        minLength: [5,'Author length is at least 5 characters!']
     },
     imageUrl: {
         type: String,
         required: [true, "Image is reqired!"],
-        min: [3,'Title length is at least 3 characters!']
+        minLength: [3, 'Image length is at least 3 characters!']
     },
     bookReview: {
        type: String,
         required: [true, "Review is reqired!"],
-        min: [10,'Title length is at least 10 characters!']
+        minLength: [10, 'Review length is at least 10 characters!']
     },
     genre: {
         type: String,
@@ -28,8 +28,8 @@ const publicationSchema = new mongoose.Schema({
     stars: {
         type: Number,
         required: [true, "Stars is reqired!"],
-        min: [1,'Should be number between 1 and 5'],
-        max: [5,'Should be number between 1 and 5'],
+        min: [1, 'Should be number between 1 and 5'],
+        max: [5, 'Should be number between 1 and 5'],
     },
     wishList: [{
         type: mongoose.Types.ObjectId,

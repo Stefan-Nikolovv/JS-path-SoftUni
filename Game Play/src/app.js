@@ -7,8 +7,6 @@ import { catalogueHandler } from "../views/catalogueHandler.js";
 import { homeHandler } from "../views/homeHandler.js";
 import { createHandler } from "../views/createHandler.js";
 import {datailHandler} from "../views/detailHandler.js";
-import { editHnadler } from "../views/editHandler.js";
-import { deleteHandler } from "../views/deleteHandler.js";
 
 
 
@@ -23,8 +21,6 @@ page("/logout", logoutHandler);
 page("/catalog", catalogueHandler);
 page('/create', createHandler);
 page("/details/:postId", datailHandler);
-page("/details/:postId/edit", editHnadler);
-page("/details/:postId/delete", deleteHandler)
 
 
 page.start();

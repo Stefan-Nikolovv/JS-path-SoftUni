@@ -1,7 +1,7 @@
 import{ html } from '../node_modules/lit-html/lit-html.js';
 
 const navigationTemplate = (user) => html `
-<a id="logo" href="/"><img id="logo-img" src="/images/logo.png" alt="/">
+<a id="logo" href="/"><img id="logo-img" src="/images/logo.png" alt="/"></a>
         <nav>
           <div>
             <a href="/dashboard">Dashboard</a>
@@ -21,7 +21,7 @@ const navigationTemplate = (user) => html `
           }
         
         </nav>
-        </a>
+        
 `;
 
 export const navigationVIew = (ctx) => {
