@@ -10,5 +10,8 @@ router.use('/auth', userController);
 
 router.use('/publication', publicationController);
 
+router.use('*', (req, res) => {
+    res.render('404')
+})
 
 module.exports = router;
