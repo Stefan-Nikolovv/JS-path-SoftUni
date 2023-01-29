@@ -18,7 +18,7 @@ export const SearchAllCars = () => {
           carService.getAll()
           .then(result => {
             currentCar(
-              result.filter(x => x.brand === searchField.search)
+              result.filter(x => (x.brand).toLowerCase() === (searchField.search).toLowerCase())
             )
           });
         };
@@ -32,7 +32,7 @@ export const SearchAllCars = () => {
     });
 
   };
-  console.log(car, searchShow);
+
 
   return (
     <section id="search-cars">
