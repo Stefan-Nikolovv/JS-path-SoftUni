@@ -8,7 +8,7 @@ export const CarConponent = ({children}) => {
 
 
     const currentCar = (carData) => {
-        setCar(carData)
+        setCar(carData);
     };
 
 

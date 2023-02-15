@@ -1,167 +1,243 @@
 import { useContext, useEffect, useState } from "react";
 import { CarContext } from "../../contexts/carContext";
-import * as request from '../../services/carService'
+import * as request from "../../services/carService";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 export const EditCar = () => {
-  const navigate = useNavigate()
-  const {currentCar, car} = useContext(CarContext);
-  const param = useParams();
-  const[error, setError] = useState({});
-  const[isSubmit,setSubmit] = useState(false);
-  useEffect(() => {
-    request.getOne(param.carId)
-    .then(searchedCar => {
-     
-      currentCar(searchedCar);
-    })
-    .catch((err) => {
-      console.error(err);
-    })
-  },[]);
+  const navigate = useNavigate();
+  const { currentCar, car } = useContext(CarContext);
+  const params = useParams();
+  const [error, setError] = useState({
+    brand: undefined,
+    model: undefined,
+    description: undefined,
+    year: undefined,
+    imageUrl: undefined,
+    price: undefined,
+  });
+  const [isSubmit, setSubmit] = useState(false);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    setSubmit(true);
-   
-  }
+    brandValidation(car.brand);
+    modelValidation(car.model);
+    desciptionValidate(car.description);
+    yearValidation(car.year);
+    imageUrlValidation(car.imageUrl);
+    priceValidation(car.price)
+    const resultOfErrors =  Object.values(error).filter(x => x === undefined).length
+    const resultOfCarErrors = Object.values(car).filter(x => x === undefined).length
+    if(resultOfErrors === 6 && resultOfCarErrors === 0 ){
+      setSubmit(true);
+    };
+  };
+ 
+  useEffect(() => {
+    
+    request.getOne(params.carId)
+      .then((searchedCar) => {
+        currentCar(searchedCar);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+      return () => currentCar([]);
+  }, []);
+
+  const errorMessagePElement = {
+    color: 'red',
+  };
+
   const onChangeHandler = (e) => {
     const target = e.target;
     currentCar({
       ...car,
-      [target.name]: target.value
+      [target.name]: target.value,
     });
   };
 
- if(Object.keys(error).length === 0 && isSubmit){
-  console.log('fetching')
-  request.editOne(param.carId, car)
-  .then( edittedCar => {
-    currentCar(edittedCar)
-    navigate(`/details/${param.carId}`)
-  })
-  .catch((err) => {
-    console.error(err);
-  })
- };
- const onBlurHandler = () => {
-  setError(validate(car));
- };
+  
+    
+    useEffect(() => {
+      if(isSubmit){
+        request.editOne(params.carId, car)
+        .then((edittedCar) => {
+          currentCar(edittedCar);
+          navigate(`/details/${params.carId}`);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      };
+    },[isSubmit])
+
+  
+  function brandValidation(carData) {
+    if (!carData || carData === undefined) {
+         error.brand = "Brand is required!";
+       } else if (carData.length <= 3) {
+         error.brand = "Brand must be at least 3 characters!";
+       } else {
+         error.brand = undefined
+         setError({ ...error });
+       };
+       setError({ ...error, brand: error.brand });
+     };
+
+
+  
+
+    function modelValidation(carData) {
+      if (!carData || carData === undefined) {
+        error.model = "Model is required!";
+      } else if (carData.length <= 2) {
+        error.model = "Model must be at least 3 characters!";
+      } else if (carData.length >= 12) {
+        error.model = "Model must be shorter then 12 characters!";
+      } else {
+        error.model = undefined
+        setError({ ...error });
+      };
+      setError({ ...error, model: error.model });
+}
+  
+
+  
+    function desciptionValidate(carData) {
+        if (!carData || carData === undefined) {
+        error.description = "Description is required!";
+      } else if (carData.length <= 10) {
+        error.description = "Description must be at least 10 characters!";
+      } else if (carData.length >= 50) {
+        error.description = "Description must be shorter then 50 characters!";
+      } else {
+        error.description = undefined
+        setError({ ...error });
+      };
+      setError({ ...error, description: error.description });
+      }
  
-  const validate = (car) => {
-    const errors = {};
-  if(!car.brand){
-    errors.brand = 'Brand is required!';
-  }else if (car.brand >= 3){
-    errors.brand = 'Brand must be at least 3 characters!'
-  }
 
-  if(!car.model){
-    errors.model = 'Model is required!'
-  }else if (car.model >= 2 ){
-    errors.model = 'Model must be at least 2 characters!'
-  }
-  else if (car.model <= 12 ){
-    errors.model = 'Model must be shorter then 12 characters!'
-  }
+  
+  function yearValidation(carData) {
+  if (carData === "" || carData === undefined) {
+        error.year = "Year is required!";
+      } else if (carData <= 0) {
+        error.year = "Year should be a postive Number.";
+      } else {
+        error.year = undefined;
+        setError({ ...error });
+      };
+      setError({ ...error, year: error.year });
+}
 
-  if(!car.description){
-    errors.description = 'Description is required!'
-  }else if (car.description >= 10) {
-    errors.description = 'Description must be at least 10 characters!'
-  }else if (car.description <= 50){
-    errors.description = 'Description must be shorter then 50 characters!'
-  }
 
-  if(!car.year){
-    errors.year = 'Year is required!'
-  }
+  
+    function imageUrlValidation(carData) {
+if (!carData || carData === undefined) {
+        error.imageUrl = "Image is required!";
+      } else if (!carData.startsWith("http")) {
+        error.imageUrl = "Image should starts with HTTP or HTTPS.";
+      } else {
+       error.imageUrl = undefined;
+        setError({ ...error });
+      };
+      setError({ ...error, imageUrl: error.imageUrl });
+}
 
-  if(!car.imageUrl){
-    errors.imageUrl = 'Brand is required!'
-  } else if (!car.imageUrl.startsWith('http')){
-    errors.imageUrl = 'Image should starts with HTTP or HTTPS'
-  }
 
-  if(!car.price){
-    errors.price = 'Price is required!'
-  };
-  return errors;
-  }
+  
+   function priceValidation(carData) {
+    if (carData === "" || carData === undefined) {
+        error.price = "Price is required!";
+      } else if (carData <= 0) {
+        error.price = "Price cant be a negative number or Zero.";
+      } else {
+        error.price = undefined;
+        setError({ ...error });
+      };
+      setError({ ...error, price: error.price });
+};
 
+
+  
   return (
-    <section id="edit-listing">
+    <section id="edit-listing" data-testid={"editCarPage"}>
       <div className="container">
         <form id="edit-form" onSubmit={onSubmitHandler}>
           <h1>Edit Car Listing</h1>
           <p>Please fill in this form to edit an listing.</p>
           <hr />
-          <p>Car Brand</p>
+          <label htmlFor="brand">Car Brand</label>
           <input
             type="text"
+            id="brand"
             placeholder="Enter Car Brand"
             name="brand"
             onChange={onChangeHandler}
             defaultValue={car.brand}
-            onBlur={onBlurHandler}
+            onBlur={(e) => brandValidation(e.target.value)}
           />
-          <p>{error.brand}</p>
-          <p>Car Model</p>
+          <p style={errorMessagePElement} data-testid={"brandError"}>{error.brand}</p>
+          <label htmlFor="model">Car Model</label>
           <input
             type="text"
+            id="model"
             placeholder="Enter Car Model"
             name="model"
             onChange={onChangeHandler}
             defaultValue={car.model}
-            onBlur={onBlurHandler}
+            onBlur={(e) => modelValidation(e.target.value)}
           />
-          <p>{error.model}</p>
-          <p>Description</p>
+          <p style={errorMessagePElement} data-testid={"modelError"}>{error.model}</p>
+          <label htmlFor="description">Description</label>
           <input
             type="text"
+            id="description"
             placeholder="Enter Description"
             name="description"
             onChange={onChangeHandler}
             defaultValue={car.description}
-            onBlur={onBlurHandler}
+            onBlur={(e) => desciptionValidate(e.target.value)}
           />
-          <p>{error.description}</p>
-          <p>Car Year</p>
+          <p style={errorMessagePElement} data-testid={"descriptionError"}>{error.description}</p>
+          <label htmlFor="year">Car Year</label>
           <input
             type="number"
+            id="year"
             placeholder="Enter Car Year"
             name="year"
             onChange={onChangeHandler}
             defaultValue={car.year}
-            onBlur={onBlurHandler}
+            onBlur={(e) => yearValidation(e.target.value)}
           />
-          <p>{error.year}</p>
-          <p>Car Image</p>
+          <p style={errorMessagePElement} data-testid={"yearError"}>{error.year}</p>
+          <label htmlFor="imageUrl">Car Image</label>
           <input
             type="text"
+            id="imageUrl"
             placeholder="Enter Car Image"
             name="imageUrl"
             onChange={onChangeHandler}
             defaultValue={car.imageUrl}
-            onBlur={onBlurHandler}
+            onBlur={(e) => imageUrlValidation(e.target.value)}
           />
-          <p>{error.imageUrl}</p>
-          <p>Car Price</p>
+          <p style={errorMessagePElement} data-testid={"imageUrlError"}>{error.imageUrl}</p>
+          <label htmlFor="price">Car Price</label>
           <input
             type="number"
+            id="price"
             placeholder="Enter Car Price"
             name="price"
             onChange={onChangeHandler}
             defaultValue={car.price}
-            onBlur={onBlurHandler}
+            onBlur={(e) => priceValidation(e.target.value)}
           />
-          <p>{error.price}</p>
+          <p style={errorMessagePElement} data-testid={"priceError"}>{error.price}</p>
           <hr />
-          <input
-            type="submit"
-            className="registerbtn"
-            defaultValue="Edit Listing"
-          />
+          <button data-testid="submit" type="click" className="registerbtn" defaultValue="Submit">
+          Submit
+          </button>
         </form>
       </div>
     </section>

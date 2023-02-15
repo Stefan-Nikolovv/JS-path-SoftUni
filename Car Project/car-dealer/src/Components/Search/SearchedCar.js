@@ -14,7 +14,7 @@ export const SearchedCar = ({car}) => {
               <h3>Price: {car.price} $</h3>
             </div>
             <div className="data-buttons">
-              <Link to={`/details/${car._id}`} className="button-carDetails">
+              <Link to={`/details/:${car._id}`} className="button-carDetails">
                 Details
               </Link>
             </div>

@@ -15,6 +15,7 @@ useEffect(() => {
   .then(result => {
     currentCar(result.filter(x => x._ownerId === user._id))
   });
+  return () => currentCar([]);
 },[]);
 
   return (

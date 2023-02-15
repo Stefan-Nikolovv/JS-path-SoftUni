@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/authService";
 import { UserContext } from "../../contexts/authContext";
@@ -16,7 +16,14 @@ export const Register = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    setSubmit(true);
+    
+    if(register.password !== register.repeatPass){
+        setError({...error, missMatch : "Passwords missmatch!"});
+      }else{
+        setError({...error, missMatch: undefined, register: undefined});
+        setSubmit(true);
+      };
+      
   };
 
   const onChangeHandler = (e) => {
@@ -28,86 +35,119 @@ export const Register = () => {
     });
   };
 
-  const onBlurHandler = () => {
-    setError(validate(register))
 
+  if(Object.values(error).filter((x) => x !== undefined).length === 0 && isSubmit){
+    registerUser(register.email, register.password)
+    .then((registerData) => {
+      if(registerData.code === 409){
+        setError({...error, register: "A user with the same email already exists"});
+        setSubmit(false);
+  
+      }else if (registerData){
+        loggedUser(registerData)
+        navigate("/");
+      }
+      
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+
+  const errorMessagePElement = {
+    color: 'red',
   };
 
 
-  const validate = (registerData) => {
+  const validate = (user, target) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if(!registerData.email){
-      errors.email = 'Email is required!'
-    }else if(!regex.test(registerData.email)){
-      errors.email = "This is not a valid email format!";
+    if (target === "email") {
+      if (!user) {
+        errors.email = "Email is required!";
+      } else if (!regex.test(user)) {
+        errors.email = "This is not a valid email format!";
+      }else{ 
+
+        setError({ ...error, login: errors.email});
+      }
+      setError({...error, email: errors.email})
+    };
+    if (target === "password") {
+      
+      if (user === "") {
+        errors.password = "Password is required!";
+      } else if (user.length < 4) {
+        errors.password = "Password must be more than 4 characters";
+      } else if (user.length >= 10) {
+        errors.password = "Password must be less than 10 characters";
+      }else{
+        
+        setError({ ...error });
+      };
+      setError({...error, password: errors.password})
+    };
+    if(target === 'repeatPass'){
+      
+      if (user === "") {
+        errors.repeatPass = "RePassword is required!";
+      }else{
+        setError({ ...error });
+      }
+      setError({...error, repeatPass: errors.repeatPass})
     }
-     if(!registerData.password){
-      errors.password = 'Password is required!'
-     }else if(registerData.password !== registerData.repeatPass){
-      errors.password = 'Passwords missmatch!';
-     }
-     else if(registerData.password.length < 4){
-      errors.password = "Password must be more than 4 characters";
-     }else if(registerData.password.length > 10){
-      errors.password = "Password must be less than 10 characters";
-     }
-     return errors;
+    
+
+    return errors;
   };
 
 
-  useEffect(() => {
-    if (Object.keys(error).length === 0 && isSubmit) {
-      registerUser(register.email, register.password)
-        .then((registerData) => {
-          loggedUser(registerData);
-          navigate("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  },[setError]);
+ 
 
   return (
-    <section id="register">
+    <section data-testid="register" id="register">
       <div className="container">
         <form id="register-form" onSubmit={onSubmitHandler}>
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
+          <p style={errorMessagePElement} data-testid={'reRgisterError'}>{ error.register}</p>
+          <p style={errorMessagePElement} data-testid={'missMatchError'}>{ error.missMatch}</p>
           <hr />
-          <label htmlFor="email">Email</label>
-          {register.email && <div></div>}
+          <label htmlFor="email" >Email</label>
+          <p style={errorMessagePElement} data-testid={'emailError'}>{ error.email}</p>
           <input
+            id="email"
             type="text"
             placeholder="Enter Username"
             name="email"
             value={register.email}
             onChange={onChangeHandler}
-            onBlur={onBlurHandler}
+            onBlur={(e) => validate(e.target.value, e.target.name)}
           />
-          <p>{error.email}</p>
-          <label htmlFor="pass">Password</label>
+          <p style={errorMessagePElement} data-testid={'passError'}>{error.password}</p>
+          <label htmlFor="password">Password</label>
           <input
+            id="password"
             type="password"
             placeholder="Enter Password"
             name="password"
             value={register.password}
             onChange={onChangeHandler}
-            onBlur={onBlurHandler}
+            onBlur={(e) => validate(e.target.value, e.target.name)}
           />
-          <p>{error.password}</p>
-          <label htmlFor="con-pass">Repeat Password</label>
+          <p style={errorMessagePElement} data-testid={'RePassError'}>{error.repeatPass}</p>
+          <label htmlFor="repeatPass">Repeat Password</label>
           <input
+            id="repeatPass"          
             type="password"
             placeholder="Repeat Password"
             name="repeatPass"
             value={register.repeatPass}
             onChange={onChangeHandler}
-            onBlur={onBlurHandler}
+            onBlur={(e) => validate(e.target.value, e.target.name)}
           />
           <hr />
-          <button type="submit" className="registerbtn" defaultValue="Register">
+          <button type="click" className="registerbtn" defaultValue="Register">
             Register
           </button>
         </form>

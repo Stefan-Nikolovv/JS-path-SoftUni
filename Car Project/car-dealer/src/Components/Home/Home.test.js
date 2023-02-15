@@ -30,12 +30,14 @@ describe('Home Page Testing', () => {
             const homeElement = screen.getByTestId('homepage');
             expect(homeElement).toHaveTextContent('To see all the listings click the link below:');
     });
-    test("HomePage to have a button", async() => {
+    
+    test("HomePage to have a link to catalog", async() => {
         render(
             <Router>
             <Home/>
             </Router> );
-            expect(screen.getByText("All Cars")).toBeInTheDocument();
+            const linkElement = screen.getByRole('link', { name: 'All Cars' });
+            expect(linkElement).toHaveAttribute('href', '/catalog');
     });
 
 });

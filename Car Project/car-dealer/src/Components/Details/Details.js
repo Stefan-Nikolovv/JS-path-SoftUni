@@ -7,9 +7,11 @@ export const Details = () => {
   const navigate = useNavigate()
   const { user } = useContext(UserContext);
   const {currentCar, car} = useContext(CarContext);
-  const param = useParams();
+  const params = useParams();
+  
   useEffect(()=> {
-      carService.getOne(param.carId)
+    
+      carService.getOne(params.carId)
       .then(searchedCar => {
         currentCar(searchedCar);
       });
@@ -21,43 +23,44 @@ export const Details = () => {
    
       const onDeleteHandler = () => {
         const conf = window.confirm("Are you sure want to delete this car?");
-        console.log(conf);
+       
         if(conf === true) {
-            carService.deleteOne(param.carId)
+            carService.deleteOne(params.carId)
             .then(res => {
                 currentCar(res);
                 navigate('/catalog')
             })
         };
       };
-
+      console.log(car)
    
   return (
-    <section id="listing-details">
+    <section id="listing-details" data-testid="detailsPage">
       <h1>Details</h1>
       <div className="details-info">
-        <img src={car.imageUrl}  alt={car.brand}/>
+        <img src={car.imageUrl}  alt={car.brand} data-testid="imageUrlId"/>
         <hr />
         <ul className="listing-props">
-          <li>
+          <li data-testid={"brandDetails"}>
             <span>Brand:</span>{car.brand}
           </li>
-          <li>
+          <li data-testid={"modelDetails"}>
             <span>Model:</span>{car.model}
           </li>
-          <li>
+          <li data-testid={"yearDetails"}>
             <span>Year:</span>{car.year}
           </li>
-          <li>
-            <span>Price:</span>{car.price}$
+          <li data-testid={"priceDetails"}>
+            <span >Price:</span>{car.price}$
           </li>
+          <li className="description-para" data-testid={"descriptionDetails"}>
+          <span>Description:{car.description}</span>
+        </li>
         </ul>
-        <p className="description-para">
-          {car.description}
-        </p>
+        
         {isOwner && 
         <div className="listings-buttons">
-        <Link to={`/edit/${car._id}`} className="button-list">
+        <Link to={`/edit/${car._id}`} className="button-list" >
           Edit
         </Link>
         <button onClick={onDeleteHandler} className="button-list">

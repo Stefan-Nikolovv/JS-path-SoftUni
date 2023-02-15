@@ -11,7 +11,6 @@ const {currentCar,car} = useContext(CarContext);
 useEffect(() =>   {
  carService.getAll()
  .then(result => {
-  console.log(result)
   currentCar(result);
  })
  .catch((err) => {
@@ -19,24 +18,9 @@ useEffect(() =>   {
  })
 return () => currentCar([]);
 },[])
-
-// useEffect(() => () => {
-//   currentCar([]);
-//  },[])
-
-
-//  carService.getAll()
-//   .then(allCars => {
-//     console.log(allCars);
-//    return currentCar(allCars);
-//   })
-//   .catch((err) => {
-//     console.error(err)
-//   })
-
-  
+ 
   return (
-    <section id="car-listings">
+    <section id="car-listings" data-testid= 'carList'>
       <h1>Car Listings</h1>
       <div className="listings">
         {car.length > 0 

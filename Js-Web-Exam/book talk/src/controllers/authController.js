@@ -6,7 +6,7 @@ const userService = require('../services/authService');
 
 const { errorHelper } = require('../utils/errorHelpers');
 
-const {isAuth, isGuest} = require('../middlewares/authMiddleWare')
+const {isAuth, isGuest} = require('../middlewares/authMiddleWare');
 
 
 router.get('/login', isGuest, (req, res) => {
