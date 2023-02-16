@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const { Salt_Rounds } = require('../config/env')
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -15,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'Email is required required'],
         unique: true,
         validate: {
             validator: function(v) {
@@ -23,7 +25,7 @@ const userSchema = new mongoose.Schema({
             },
             message: props => `${props.value} is not a valid email address!`
           },
-          required: [true, 'User phone number required']
+          
     },
     password: {
         type: String,
@@ -39,7 +41,7 @@ const userSchema = new mongoose.Schema({
 userSchema.pre("save", function(next){
     bcrypt.hash(this.password, Salt_Rounds)
     .then((hashedPass) => {
-        this.password = hashedPass
+        this.password = hashedPass;
         next();
     });
 

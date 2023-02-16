@@ -14,12 +14,11 @@
 
     <div id="box">
 
-        <!-- In case of error, you should display div with class "error-container" -->
-        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-        <!--
+        {{#if error}}
         <div class="error-container">
-            <p>Error</p>
-        </div>-->
+            <p>{{error}}</p>
+        </div>
+        {{/if}}
 
 
         <nav>
@@ -30,12 +29,14 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/publication/catalog">All Posts</a></li>
                 <!-- Logged users -->
+                {{#if user}}
                 <li><a href="/publication/create">Create Post</a></li>
-                <li><a href="#">Posts of {{email-of-user}}</a></li>
+                <li><a href="#">Posts of {{user.email}}</a></li>
                 <li><a href="/auth/logout">Logout</a></li>
-                <!-- Guest users -->
+                {{else}}
                 <li><a href="/auth/register">Register</a></li>
                 <li><a href="/auth/login">Login</a></li>
+                {{/if}}
             </ul>
 
         </nav>

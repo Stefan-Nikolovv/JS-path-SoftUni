@@ -2,11 +2,13 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const{ SECRET } = require('../config/env');
 const bcrypt = require('bcrypt');
+
+
 exports.createAccount = (userData) => User.create(userData);
 
 exports.createToken = (user) => {
     const payload = { _id: user._id, email: user.email, firstName: user.firstName, lastName: user.lastName};
-    const promise = new promise((resolve, reject) => {
+    const promise = new Promise((resolve, reject) => {
         jwt.sign(payload, SECRET, {expiresIn: '2d'}, (err, signToken) => {
             if(err){
                 return reject(err)
@@ -18,8 +20,8 @@ exports.createToken = (user) => {
 };
 
 exports.login = async (email, password) => {
-    const user = User.findOne({email});
-
+    const user = await User.findOne({email});
+    console.log(user)
     if(!user){
         throw new Error ('Email or password is not correct!');
     };
