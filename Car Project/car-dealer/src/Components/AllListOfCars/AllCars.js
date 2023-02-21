@@ -20,14 +20,14 @@ return () => currentCar([]);
 },[])
  
   return (
-    <section id="car-listings" data-testid= 'carList'>
+    <section id="car-listings" data-testid='carList'>
       <h1>Car Listings</h1>
       <div className="listings">
         {car.length > 0 
         ?
         car.map(x => <CarList key={x._id} car={x}/>) 
         :
-        <p className="no-cars">No cars in database.</p>
+        <p className="no-cars" data-testid='carMessage'>No cars in database.</p>
         }
         
       </div>

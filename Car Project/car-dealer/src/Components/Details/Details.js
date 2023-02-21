@@ -10,16 +10,16 @@ export const Details = () => {
   const params = useParams();
   
   useEffect(()=> {
-    
+      
       carService.getOne(params.carId)
       .then(searchedCar => {
         currentCar(searchedCar);
       });
-  
-  },[]);
+      
+  },[currentCar]);
 
   
-      const isOwner = user._id === car._ownerId
+      const isOwner = user._id === car._ownerId;
    
       const onDeleteHandler = () => {
         const conf = window.confirm("Are you sure want to delete this car?");
@@ -32,7 +32,7 @@ export const Details = () => {
             })
         };
       };
-      console.log(car)
+    
    
   return (
     <section id="listing-details" data-testid="detailsPage">
@@ -60,10 +60,10 @@ export const Details = () => {
         
         {isOwner && 
         <div className="listings-buttons">
-        <Link to={`/edit/${car._id}`} className="button-list" >
+        <Link to={`/edit/${car._id}`} className="button-list" data-testid="editButton" >
           Edit
         </Link>
-        <button onClick={onDeleteHandler} className="button-list">
+        <button onClick={onDeleteHandler} className="button-list" data-testid="deleteButton">
           Delete
         </button>
         </div>

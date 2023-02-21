@@ -21,7 +21,6 @@ exports.createToken = (user) => {
 
 exports.login = async (email, password) => {
     const user = await User.findOne({email});
-    console.log(user)
     if(!user){
         throw new Error ('Email or password is not correct!');
     };
@@ -33,4 +32,8 @@ exports.login = async (email, password) => {
     };
 
     return user;
-}
+};
+
+exports.getMyPosts = (email) =>
+   User.findOne({ email}).populate("myPosts");
+  

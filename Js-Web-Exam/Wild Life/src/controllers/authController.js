@@ -12,7 +12,7 @@ router.post('/login', async(req, res) => {
         const loggedUser = await authService.login(email, password);
         const token = await authService.createToken(loggedUser);
         res.cookie('user', token, {httpOnly: true});
-        res.redirect('/catalog');
+        res.redirect('/publication/catalog');
     } catch (error) {
         res.render('login', {error: error});
     };
@@ -32,7 +32,7 @@ router.post('/register', async(req, res) => {
         const registerUser = await authService.createAccount({firstName, lastName, email, password});
         const token = await authService.createToken(registerUser);
         res.cookie('user', token, {httpOnly: true});
-        res.redirect('/catalog')
+        res.redirect('/publication/catalog')
     } catch (error) {
         res.render('register', {error: error})
     };
