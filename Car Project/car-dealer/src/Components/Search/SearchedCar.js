@@ -10,8 +10,8 @@ export const SearchedCar = ({car}) => {
           <h2>{car.brand}</h2>
           <div className="info">
             <div className="data-info">
-              <h3>Year:{car.year}</h3>
-              <h3>Price: {car.price} $</h3>
+              <h3 data-testid = 'yearSearchCar'>Year:{car.year}</h3>
+              <h3 data-testid = 'priceSearchCar'>Price: {car.price} $</h3>
             </div>
             <div className="data-buttons">
               <Link to={`/details/:${car._id}`} className="button-carDetails">

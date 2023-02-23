@@ -17,9 +17,9 @@ useEffect(() => {
   });
   return () => currentCar([]);
 },[]);
-
+  
   return (
-    <section id="my-listings">
+    <section id="my-listings" data-testid = 'MyListCarID'>
       <h1>My car listings</h1>
       <div className="listings">
         {/* Display all records */}
@@ -27,7 +27,7 @@ useEffect(() => {
         ?
         car.map(x => <ListCar key={x._id} car={x}/>)
         :
-        <p className="no-cars"> You haven't listed any cars yet.</p>
+        <p className="no-cars" data-testid = 'listCarError'>You haven't listed any cars yet.</p>
         }
       </div>
     </section>

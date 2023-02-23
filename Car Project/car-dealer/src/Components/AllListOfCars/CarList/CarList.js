@@ -5,7 +5,7 @@ export const CarList = ({car}) => {
     return(
         <div className="listing">
           <div className="preview">
-            <img src={car.imageUrl} alt={car.title}  />
+            <img src={car.imageUrl} alt={car.title} />
           </div>
           <h2>{car.brand}</h2>
           <div className="info">

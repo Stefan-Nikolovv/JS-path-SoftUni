@@ -35,7 +35,7 @@ export const SearchAllCars = () => {
 
 
   return (
-    <section id="search-cars">
+    <section id="search-cars" data-testid = 'searchButtonID'>
       <h1>Filter by Brand</h1>
       <div className="container">
         <input
@@ -56,7 +56,7 @@ export const SearchAllCars = () => {
           ?
           car.map(x => <SearchedCar key={x._id} car={x}/>)
           :
-           <p className="no-cars"> No results.</p>
+           <p className="no-cars" data-testid = 'resultOfSearchID'>No results.</p>
         }
         
        

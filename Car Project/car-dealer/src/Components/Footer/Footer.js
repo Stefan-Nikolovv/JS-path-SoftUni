@@ -1,7 +1,7 @@
 export const Footer = () => {
     return (
         <footer>
-          <p>© All rights reserved</p>
+          <p data-testid = 'footerID'>© All rights reserved</p>
         </footer>
     );
 };

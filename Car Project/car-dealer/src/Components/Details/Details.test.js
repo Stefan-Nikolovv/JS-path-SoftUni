@@ -1,11 +1,14 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import { CarConponent } from "../../contexts/carContext";
-import { AuthComponent } from "../../contexts/authContext";
+import { CarConponent, CarContext} from "../../contexts/carContext";
+
+import { UserContext, AuthComponent } from "../../contexts/authContext";
 import "@testing-library/jest-dom";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import * as router from "react-router";
 import { Details } from "./Details";
+
+
 
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
@@ -16,12 +19,12 @@ describe("Test DetailsPage", () => {
     ...jest.requireActual("react-router"),
     useParams: jest.fn(),
   }));
+  global.alert = jest.fn();
   
- 
   beforeEach(() => {
     jest.spyOn(router, "useNavigate").mockImplementation(() => navigate);
     jest.spyOn(router, "useParams").mockReturnValue({ carId: "1" });
-
+    jest.spyOn(window,'alert').mockImplementation();
   
   });
 
@@ -278,54 +281,89 @@ describe("Test DetailsPage", () => {
   //TODO is Owner of the Car to dispayed Edit and Delete buttons......
 
   test("Buttons to be displayed", async () => {
+    const user = { email: "asdasd@abv.bg", _id: "1", accessToken: "asdasdasd" };
+    const car = {
+      _ownerId: "1",
+      brand: "Audi",
+      model: "allroad",
+      description: "asdasdasdasd",
+      year: "2022",
+      imageUrl: "https",
+      price: "15700",
+      _createdOn: 1,
+      _id: "12",
+    }
     const component = render(
       <Router>
-        <AuthComponent>
-          <CarConponent>
+        <UserContext.Provider value={{user}}>
+          <CarContext.Provider value={{car}}>
             <Details url={"http://localhost:3030/data/carDealer/:carId"} />
-          </CarConponent>
-        </AuthComponent>
+          </CarContext.Provider>
+          </UserContext.Provider>
       </Router>
     );
 
-    server.use(
-      rest.post("http://localhost:3030/users/login", (req, res, ctx) => {
-        console.log('login')
-        return res(
-          ctx.status(200),
-          ctx.json({ email: "neshto@abv.bg", _id: "1", accessToken: "asdasdasd" })
-        );
-      })
-    );
-    
-    server.use(
-      
-      rest.get(
-        "http://localhost:3030/data/carDealer/:carId",
-        (req, res, ctx) => {
-          console.log('test Details')
-          return res(
-            ctx.status(200),
-            ctx.json({
-              _ownerId: "1",
-              brand: "Audi",
-              model: "allroad",
-              description: "asdasdasdasd",
-              year: "2022",
-              imageUrl: "https",
-              price: "15700",
-              _createdOn: 1,
-              _id: "12",
-            })
-          );
-        }
-      )
-    );
-    
-    
-
     const editElement = component.getByTestId("editButton");
-
+    const delleteButtoen = component.getByTestId('deleteButton')
     await waitFor(() => expect(editElement).toBeInTheDocument());
+    await waitFor(() => expect(delleteButtoen).toBeInTheDocument())
   });
+  test("To have Edit Button with link to editCar", async () => {
+    const user = { email: "asdasd@abv.bg", _id: "1", accessToken: "asdasdasd" };
+    const car = {
+      _ownerId: "1",
+      brand: "Audi",
+      model: "allroad",
+      description: "asdasdasdasd",
+      year: "2022",
+      imageUrl: "https",
+      price: "15700",
+      _createdOn: 1,
+      _id: "12",
+    }
+    const component = render(
+      <Router>
+        <UserContext.Provider value={{user}}>
+          <CarContext.Provider value={{car}}>
+            <Details url={"http://localhost:3030/data/carDealer/:carId"} />
+          </CarContext.Provider>
+          </UserContext.Provider>
+      </Router>
+    );
+
+    
+    const linkElement = component.getByRole('link', { name: 'Edit' });
+    expect(linkElement).toHaveAttribute('href', '/edit/12');
+  
+  });
+  // test("Delete Button to have been called", async () => {
+  //   const user = { email: "asdasd@abv.bg", _id: "1", accessToken: "asdasdasd" };
+  //   const car = {
+  //     _ownerId: "1",
+  //     brand: "Audi",
+  //     model: "allroad",
+  //     description: "asdasdasdasd",
+  //     year: "2022",
+  //     imageUrl: "https",
+  //     price: "15700",
+  //     _createdOn: 1,
+  //     _id: "12",
+  //   }
+   
+  //   const component = render(
+  //     <Router>
+  //       <UserContext.Provider value={{user}}>
+  //         <CarContext.Provider value={{car}}>
+  //           <Details url={"http://localhost:3030/data/carDealer/:carId"} />
+  //         </CarContext.Provider>
+  //         </UserContext.Provider>
+  //     </Router>
+  //   );
+
+  //   const alertMock = jest.spyOn(window,'alert').mockImplementation();
+  //   const deleteButton = component.getByTestId("deleteButton");
+  //   fireEvent.click(deleteButton)
+  //   await waitFor(() => expect(alertMock).toHaveBeenCalledTimes(1))
+  
+  // });
 });

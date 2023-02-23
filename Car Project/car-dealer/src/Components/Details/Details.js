@@ -16,11 +16,11 @@ export const Details = () => {
         currentCar(searchedCar);
       });
       
-  },[currentCar]);
-
+  },[]);
   
-      const isOwner = user._id === car._ownerId;
-   
+  
+       const isOwner = user._id === car._ownerId;
+      
       const onDeleteHandler = () => {
         const conf = window.confirm("Are you sure want to delete this car?");
        

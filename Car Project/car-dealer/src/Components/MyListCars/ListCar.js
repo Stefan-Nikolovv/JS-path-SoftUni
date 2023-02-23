@@ -13,7 +13,7 @@ export const ListCar = ({car}) => {
             <h3>Price: {car.price} $</h3>
           </div>
           <div className="data-buttons">
-            <Link to={`/details/${car._id}`} className="button-carDetails">
+            <Link type="click" to={`/details/${car._id}`} className="button-carDetails">
               Details
             </Link>
           </div>
