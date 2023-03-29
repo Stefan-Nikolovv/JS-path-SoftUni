@@ -14,8 +14,8 @@ exports.createToken = (user) => {
         jwt.sign(payload, SECRET, {expiresIn: '2d'}, (err, decodedToken) => {
             if(err){
                 return reject(err);
-            }
-            resolve(decodedToken)
+            };
+            resolve(decodedToken);
         });
     });
     return promise;

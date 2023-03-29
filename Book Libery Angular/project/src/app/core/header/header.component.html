@@ -1,0 +1,22 @@
+<header id="site-header">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <section class="navbar-dashboard">
+            <a routerLink="/">Dashboard</a>
+            <!-- Guest users -->
+
+            <div id="guest" *ngIf="!isLoggedIn">
+                <a class="button" routerLink="auth/login">Login</a>
+                <a class="button" routerLink="auth/register">Register</a>
+            </div>
+            
+            <!-- Logged-in users -->
+            <div id="user" *ngIf="isLoggedIn">
+                <span >Welcome, {{userInfo}}</span>
+                <a class="button" routerLink="publication/mybooks">My Books</a>
+                <a class="button" routerLink="publication/create">Add Book</a>
+                <a class="button" routerLink="auth/logout">Logout</a>
+            </div>
+        </section>
+    </nav>
+</header>

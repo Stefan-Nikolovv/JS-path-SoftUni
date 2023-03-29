@@ -99,6 +99,8 @@ describe('Test Search Component', () => {
           }
         )
       );
+
+     
           const currentCar = () => {}
       const component = render(
         <Router>
@@ -112,7 +114,7 @@ describe('Test Search Component', () => {
           const buttonDetails = component.getByRole('link', {name: "Details"});
 
           fireEvent.click(buttonDetails)
-          await waitFor(() => expect(buttonDetails).toHaveAttribute('href', '/details/:1'));
+          await waitFor(() => expect(buttonDetails).toHaveAttribute('href', '/details/1'));
   });
 
   test('to have right Price', async() => {

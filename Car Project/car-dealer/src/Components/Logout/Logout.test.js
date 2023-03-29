@@ -23,7 +23,6 @@ import {
       global.localStorage = localStorageMock;
   beforeEach(() => {
     jest.spyOn(router, "useNavigate").mockImplementation(() => navigate);
-    jest.spyOn(localStorage, 'getItem');
   });
   const server = setupServer();
   beforeAll(() => server.listen());

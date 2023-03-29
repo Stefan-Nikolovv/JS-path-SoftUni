@@ -9,13 +9,18 @@ import "@testing-library/jest-dom";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthComponent } from "../../contexts/authContext";
+import { AuthComponent, UserContext } from "../../contexts/authContext";
 import { Login } from "./Login";
 import * as router from "react-router";
 
 describe("Testin LoginPage", () => {
   const navigate = jest.fn();
-
+  const localStorageMock = {
+    getItem: jest.fn(),
+    setItem: jest.fn(),
+    clear: jest.fn()
+  };
+  global.localStorage = localStorageMock;
   beforeEach(() => {
     jest.spyOn(router, "useNavigate").mockImplementation(() => navigate);
   });
@@ -208,4 +213,10 @@ describe("Testin LoginPage", () => {
      const linkElement = screen.getByRole('link', { name: 'Sign up' });
      expect(linkElement).toHaveAttribute('href', '/register');
   });
+
+  test('localStorage to save user', async() => {
+    const user = {email: 'peshoko@abv.bg', _id: '1', accessToken:'1'};
+    localStorage.setItem('auth', JSON.stringify(user))
+    expect(localStorage.getItem('auth')).toEqual(JSON.stringify(user));
+  })
 });

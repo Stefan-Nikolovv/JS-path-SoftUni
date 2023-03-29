@@ -108,7 +108,7 @@ export const EditCar = () => {
         error.description = "Description is required!";
       } else if (carData.length <= 10) {
         error.description = "Description must be at least 10 characters!";
-      } else if (carData.length >= 50) {
+      } else if (carData.length >= 150) {
         error.description = "Description must be shorter then 50 characters!";
       } else {
         error.description = undefined

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 
 export const SearchedCar = ({car}) => {
+  
     return(
         <div className="listing">
           <div className="preview">
@@ -14,7 +15,7 @@ export const SearchedCar = ({car}) => {
               <h3 data-testid = 'priceSearchCar'>Price: {car.price} $</h3>
             </div>
             <div className="data-buttons">
-              <Link to={`/details/:${car._id}`} className="button-carDetails">
+              <Link to={`/details/${car._id}`} className="button-carDetails">
                 Details
               </Link>
             </div>

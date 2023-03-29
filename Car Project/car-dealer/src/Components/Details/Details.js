@@ -20,7 +20,7 @@ export const Details = () => {
   
   
        const isOwner = user._id === car._ownerId;
-      
+       console.log(car);
       const onDeleteHandler = () => {
         const conf = window.confirm("Are you sure want to delete this car?");
        

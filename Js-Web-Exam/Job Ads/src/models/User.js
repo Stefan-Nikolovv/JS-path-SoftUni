@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
 userSchema.pre("save", function(next){
     bcrypt.hash(this.password, Salt_Rounds)
     .then((hashedPass) => {
-        this.password = hashedPass
+        this.password = hashedPass;
         next();
     });
 

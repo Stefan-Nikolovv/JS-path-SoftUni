@@ -1,0 +1,16 @@
+<section id="my-books-page" class="my-books">
+    <h1>My Books</h1>
+    <!-- Display ul: with list-items for every user's books (if any) -->
+    <ul class="my-books-list">
+        <li class="otherBooks" *ngFor="let book of bookList; let i = index">
+            <h3>{{book.title}}</h3>
+            <p>Type: {{book.type}}</p>
+            <p class="img">{{book.imageUrl}}</p>
+            <a class="button" href="details/{{book._id}}">Details</a>
+        </li>
+        
+    </ul>
+
+    <!-- Display paragraph: If the user doesn't have his own books  -->
+    <p class="no-books" *ngIf="!bookList">No books in database!</p>
+</section>

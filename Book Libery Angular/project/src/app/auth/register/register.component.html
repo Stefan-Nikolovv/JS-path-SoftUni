@@ -1,0 +1,81 @@
+<section id="register-page" class="register">
+  <form
+    id="register-form"
+    [formGroup]="validationForm"
+    (ngSubmit)="registerHandler()"
+  >
+    <fieldset>
+      <legend>Register Form</legend>
+      <p class="field">
+        <label for="email">Email</label>
+        <span class="input">
+          <input
+            formControlName="email"
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Email"
+          />
+        </span>
+      </p>
+      <ng-container *ngIf="validationForm.get('email')?.touched">
+        <p class="error" *ngIf="validationForm.get('email')?.errors?.['required']">
+            Email is required!
+        </p>
+        <p class="error" *ngIf="validationForm.get('email')?.errors?.['emailValidator']">
+            Email is not valid!
+        </p>
+      </ng-container>
+      <ng-container formGroupName="pass">
+        <p class="field">
+          <label for="password">Password</label>
+          <span class="input">
+            <input
+              formControlName="password"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+            />
+          </span>
+        </p>
+        <ng-container
+          *ngIf="validationForm.get('pass')?.get('password')?.touched"
+        >
+          <p
+            class="error"
+            *ngIf="validationForm.get('pass')?.get('password')?.errors?.['required']"
+          >
+            Password is required!
+          </p>
+          <p
+            class="error"
+            *ngIf="validationForm.get('pass')?.get('password')?.errors?.['minlength']"
+          >
+            Password must be at least 5 characters!
+          </p>
+        </ng-container>
+        <p class="field">
+          <label for="repeat-pass">Repeat Password</label>
+          <span class="input">
+            <input
+              formControlName="rePassword"
+              type="password"
+              name="confirm-pass"
+              id="repeat-pass"
+              placeholder="Repeat Password"
+            />
+          </span>
+        </p>
+        <p
+          *ngIf="validationForm.get('pass')?.errors?.['appPasswordValidator'] && validationForm.get('pass')?.get('rePassword')?.touched"
+          class="error"
+        >
+          Repeat Password does not match password!
+        </p>
+      </ng-container>
+
+      <button [disabled]="validationForm.invalid"   >Register</button>
+    </fieldset>
+  </form>
+</section>

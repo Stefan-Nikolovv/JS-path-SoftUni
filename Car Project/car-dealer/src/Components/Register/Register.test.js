@@ -232,4 +232,10 @@ describe("Test Register Page", () => {
      const linkElement = screen.getByRole('link', { name: 'Sign in' });
      expect(linkElement).toHaveAttribute('href', '/login');
   });
+
+  test('localStorage to save user', async() => {
+    const user = {email: 'peshoko@abv.bg', _id: '1', accessToken:'1'};
+    localStorage.setItem('auth', JSON.stringify(user))
+    expect(localStorage.getItem('auth')).toEqual(JSON.stringify(user));
+  })
 });
