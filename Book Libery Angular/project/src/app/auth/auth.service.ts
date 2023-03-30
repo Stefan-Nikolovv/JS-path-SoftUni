@@ -14,14 +14,14 @@ export class AuthService implements OnDestroy {
   );
 
       user: IUser | null = null;
-      userId: string | null = null 
+      
        
 
       get isLoggedIn() {
         return localStorage.getItem('user') || null;
       }
-      get userI(){
-        return JSON.stringify(localStorage.getItem('user'))  || null;
+      get savedUser(){
+        return JSON.parse(localStorage.getItem('user')!);
       }
      
       
@@ -39,7 +39,7 @@ export class AuthService implements OnDestroy {
       return this.httpClient.post<IUser>('/api/register', {email, password})
       .pipe(tap((user) =>{
         localStorage.setItem('user', JSON.stringify(user));
-        this.userId = user._id; 
+        
         return this.user$$.next(user)
       }
 
@@ -50,7 +50,7 @@ export class AuthService implements OnDestroy {
     return this.httpClient.post<any>('/api/login', {email, password})
     .pipe(tap((user) => {
       localStorage.setItem('user', JSON.stringify(user));
-      this.userId = user._id;
+     
       return this.user$$.next(user)
     }
       

@@ -15,14 +15,11 @@ export class HeaderComponent {
   }
  
   get userInfo(){
-   let length =  this.authService.userI?.split('email')[1].split(':')[1].split('"')[1].length 
-    const user = this.authService.userI?.split('email')[1].split(':')[1].split('"')[1].substring(0, length! - 1);
-    console.log(user)
-    return user;
-  }
+   return this.authService.savedUser
+  };
 
 
-constructor(private authService: AuthService, private router: Router){}
+constructor(private authService: AuthService){}
 
 
 

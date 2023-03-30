@@ -12,7 +12,7 @@
             
             <!-- Logged-in users -->
             <div id="user" *ngIf="isLoggedIn">
-                <span >Welcome, {{userInfo}}</span>
+                <span >Welcome, {{userInfo.email}}</span>
                 <a class="button" routerLink="publication/mybooks">My Books</a>
                 <a class="button" routerLink="publication/create">Add Book</a>
                 <a class="button" routerLink="auth/logout">Logout</a>

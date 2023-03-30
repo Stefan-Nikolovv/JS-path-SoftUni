@@ -39,9 +39,7 @@ export class DetailsComponent implements OnInit {
       this.apiService.getOneBook(this.activatedRoute.snapshot.params?.["id"])
       .subscribe({
         next: (value) => {
-          const length = this.authService.userI?.split('_id')[1].split(':')[1].split('"')[1].length
-          const userID = this.authService.userI?.split('_id')[1].split(':')[1].split('"')[1].substring(0, length! - 1)
-          if(value.userId._id === userID){
+          if(value.userId._id === this.authService.savedUser._id){
            this.owner = true;
           }
           this.bookList = [value];
