@@ -195,6 +195,7 @@ if (!carData || carData === undefined) {
             onBlur={(e) => modelValidation(e.target.value)}
           />
           <p style={errorMessagePElement} data-testid={"modelError"}>{error.model}</p>
+         
           <label htmlFor="description">Description</label>
           <input
             type="text"
@@ -205,6 +206,7 @@ if (!carData || carData === undefined) {
             onBlur={(e) => desciptionValidate(e.target.value)}
           />
           <p style={errorMessagePElement} data-testid={"descriptionError"}>{error.description}</p>
+          
           <label htmlFor="year">Car Year</label>
           <input
             type="number"
@@ -215,6 +217,7 @@ if (!carData || carData === undefined) {
             onBlur={(e) => yearValidation(e.target.value)}
           />
           <p style={errorMessagePElement} data-testid={"yearError"}>{error.year}</p>
+          
           <label htmlFor="imageUrl">Car Image</label>
           <input
             type="text"
@@ -225,6 +228,7 @@ if (!carData || carData === undefined) {
             onBlur={(e) => imageUrlValidation(e.target.value)}
           />
           <p style={errorMessagePElement} data-testid={"imageUrlError"}>{error.imageUrl}</p>
+          
           <label htmlFor="price">Car Price</label>
           <input
             type="number"

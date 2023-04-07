@@ -16,14 +16,13 @@ export const Register = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    
-    if(register.password !== register.repeatPass){
-        setError({...error, missMatch : "Passwords missmatch!"});
-      }else{
-        setError({...error, missMatch: undefined, register: undefined});
-        setSubmit(true);
-      };
-      
+
+    if (register.password !== register.repeatPass) {
+      setError({ ...error, missMatch: "Passwords missmatch!" });
+    } else {
+      setError({ ...error, missMatch: undefined, register: undefined });
+      setSubmit(true);
+    }
   };
 
   const onChangeHandler = (e) => {
@@ -35,29 +34,31 @@ export const Register = () => {
     });
   };
 
-
-  if(Object.values(error).filter((x) => x !== undefined).length === 0 && isSubmit){
+  if (
+    Object.values(error).filter((x) => x !== undefined).length === 0 &&
+    isSubmit
+  ) {
     registerUser(register.email, register.password)
-    .then((registerData) => {
-      if(registerData.code === 409){
-        setError({...error, register: "A user with the same email already exists"});
-        setSubmit(false);
-  
-      }else if (registerData){
-        loggedUser(registerData)
-        navigate("/");
-      }
-      
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  };
+      .then((registerData) => {
+        if (registerData.code === 409) {
+          setError({
+            ...error,
+            register: "A user with the same email already exists!",
+          });
+          setSubmit(false);
+        } else if (registerData) {
+          loggedUser(registerData);
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const errorMessagePElement = {
-    color: 'red',
+    color: "red",
   };
-
 
   const validate = (user, target) => {
     const errors = {};
@@ -67,42 +68,34 @@ export const Register = () => {
         errors.email = "Email is required!";
       } else if (!regex.test(user)) {
         errors.email = "This is not a valid email format!";
-      }else{ 
-
-        setError({ ...error, login: errors.email});
+      } else {
+        setError({ ...error, login: errors.email });
       }
-      setError({...error, email: errors.email})
-    };
+      setError({ ...error, email: errors.email });
+    }
     if (target === "password") {
-      
       if (user === "") {
         errors.password = "Password is required!";
       } else if (user.length < 4) {
         errors.password = "Password must be more than 4 characters";
       } else if (user.length >= 10) {
         errors.password = "Password must be less than 10 characters";
-      }else{
-        
-        setError({ ...error });
-      };
-      setError({...error, password: errors.password})
-    };
-    if(target === 'repeatPass'){
-      
-      if (user === "") {
-        errors.repeatPass = "RePassword is required!";
-      }else{
+      } else {
         setError({ ...error });
       }
-      setError({...error, repeatPass: errors.repeatPass})
+      setError({ ...error, password: errors.password });
     }
-    
+    if (target === "repeatPass") {
+      if (user === "") {
+        errors.repeatPass = "RePassword is required!";
+      } else {
+        setError({ ...error });
+      }
+      setError({ ...error, repeatPass: errors.repeatPass });
+    }
 
     return errors;
   };
-
-
- 
 
   return (
     <section data-testid="register" id="register">
@@ -110,11 +103,11 @@ export const Register = () => {
         <form id="register-form" onSubmit={onSubmitHandler}>
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
-          <p style={errorMessagePElement} data-testid={'reRgisterError'}>{ error.register}</p>
-          <p style={errorMessagePElement} data-testid={'missMatchError'}>{ error.missMatch}</p>
           <hr />
-          <label htmlFor="email" >Email</label>
-          <p style={errorMessagePElement} data-testid={'emailError'}>{ error.email}</p>
+          <label htmlFor="email">Email</label>
+          <p style={errorMessagePElement} data-testid={"emailError"}>
+            {error.email}
+          </p>
           <input
             id="email"
             type="text"
@@ -124,7 +117,6 @@ export const Register = () => {
             onChange={onChangeHandler}
             onBlur={(e) => validate(e.target.value, e.target.name)}
           />
-          <p style={errorMessagePElement} data-testid={'passError'}>{error.password}</p>
           <label htmlFor="password">Password</label>
           <input
             id="password"
@@ -135,10 +127,15 @@ export const Register = () => {
             onChange={onChangeHandler}
             onBlur={(e) => validate(e.target.value, e.target.name)}
           />
-          <p style={errorMessagePElement} data-testid={'RePassError'}>{error.repeatPass}</p>
+          <p style={errorMessagePElement} data-testid={"passError"}>
+            {error.password}
+          </p>
+          <p style={errorMessagePElement} data-testid={"RePassError"}>
+            {error.repeatPass}
+          </p>
           <label htmlFor="repeatPass">Repeat Password</label>
           <input
-            id="repeatPass"          
+            id="repeatPass"
             type="password"
             placeholder="Repeat Password"
             name="repeatPass"
@@ -146,6 +143,13 @@ export const Register = () => {
             onChange={onChangeHandler}
             onBlur={(e) => validate(e.target.value, e.target.name)}
           />
+          <p style={errorMessagePElement} data-testid={"missMatchError"}>
+            {error.missMatch}
+          </p>
+
+          <p style={errorMessagePElement} data-testid={"reRgisterError"}>
+            {error.register}
+          </p>
           <hr />
           <button type="click" className="registerbtn" defaultValue="Register">
             Register

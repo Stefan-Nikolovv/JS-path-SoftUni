@@ -17,7 +17,7 @@ export const Login = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     setSubmit(true);
-    setError({...error, login: undefined})
+    setError({ ...error, login: undefined });
   };
   const onChangeLoginHandler = (e) => {
     e.preventDefault();
@@ -28,35 +28,32 @@ export const Login = () => {
     });
   };
 
+  useEffect(() => {
+    if (
+      Object.values(error).filter((x) => x !== undefined).length === 0 &&
+      isSubmit
+    ) {
+      login(user.email, user.password)
+        .then((userData) => {
+          if (userData.code === 403) {
+            setError({ ...error, login: "Email or password don't match" });
+            user.email = "";
+            user.password = "";
+            setSubmit(false);
+          } else if (userData) {
+            loggedUser(userData);
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          setError({ ...error, login: err });
+        });
+    }
+  }, [isSubmit]);
 
-    
-    useEffect(() => {
-      
-      if(Object.values(error).filter((x) => x !== undefined).length === 0 && isSubmit) {
-        login(user.email, user.password)
-          .then((userData) => {
-            
-            if(userData.code === 403){
-              setError({...error, login: "Login or password don't match"});
-              user.email = "";
-              user.password = "";
-              setSubmit(false);
-        
-            }else if (userData){
-              loggedUser(userData)
-              navigate("/");
-            }
-          })
-          .catch((err) => {
-            setError({...error, login: err})
-          });
-      }
-    },[isSubmit])
-    
-    const errorMessagePElement = {
-      color: 'red',
-    };
-  
+  const errorMessagePElement = {
+    color: "red",
+  };
 
   const validate = (user, target) => {
     const errors = {};
@@ -66,12 +63,11 @@ export const Login = () => {
         errors.email = "Email is required!";
       } else if (!regex.test(user)) {
         errors.email = "This is not a valid email format!";
-      }else{ 
-
-        setError({ ...error, login: errors.email});
+      } else {
+        setError({ ...error, login: errors.email });
       }
-      setError({...error, email: errors.email})
-    };
+      setError({ ...error, email: errors.email });
+    }
     if (target === "password") {
       if (user === "") {
         errors.password = "Password is required!";
@@ -79,11 +75,11 @@ export const Login = () => {
         errors.password = "Password must be more than 4 characters";
       } else if (user.length > 10) {
         errors.password = "Password must be less than 10 characters";
-      }else{
+      } else {
         setError({ ...error });
-      };
-      setError({...error, password: errors.password})
-    };
+      }
+      setError({ ...error, password: errors.password });
+    }
 
     return errors;
   };
@@ -91,11 +87,9 @@ export const Login = () => {
     <section data-testid="login" id="login">
       <div className="container">
         <form id="login-form" onSubmit={onSubmitHandler}>
-        <p data-testid="loginError" style={errorMessagePElement}>{ error.login }</p>
-
-
           <h1>Login</h1>
-          <p>Please enter your credentials.</p>
+          <p> Please enter your credentials.</p>
+          <hr/>
           <label htmlFor="email">Email:</label>
           <input
             id="email"
@@ -106,7 +100,11 @@ export const Login = () => {
             onBlur={(e) => validate(e.target.value, e.target.name)}
             onChange={onChangeLoginHandler}
           />
-          <p data-testid="emailError" style={errorMessagePElement}>{error.email}</p>
+          <p data-testid="emailError" style={errorMessagePElement}>
+            {error.email}
+          </p>
+          <hr/>
+          <br/>
           <label htmlFor="password">Password:</label>
           <input
             id="password"
@@ -117,11 +115,18 @@ export const Login = () => {
             onBlur={(e) => validate(e.target.value, e.target.name)}
             onChange={onChangeLoginHandler}
           />
-          <p data-testid="passwordError" style={errorMessagePElement}>{error.password}</p>
+          <p data-testid="passwordError" style={errorMessagePElement}>
+            {error.password}
+          </p>
+          <p data-testid="loginError" style={errorMessagePElement}>
+            {error.login}
+          </p>
+          <hr />
           <button type="click" className="registerbtn" defaultValue="Login">
             Login
           </button>
         </form>
+
         <div className="signin">
           <label>
             Dont have an account?
