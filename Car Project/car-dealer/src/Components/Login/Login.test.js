@@ -146,7 +146,7 @@ describe("Testin LoginPage", () => {
       rest.post("http://localhost:3030/users/login", (req, res, ctx) => {
         return res(
           ctx.status(403),
-          ctx.json({ code: 403, message: "Login or password don't match" })
+          ctx.json({ code: 403, message: "Email or password don't match" })
         );
       })
     );
@@ -169,7 +169,7 @@ describe("Testin LoginPage", () => {
 
     await waitFor(() =>
       expect(component.getByTestId("loginError").textContent).toBe(
-        "Login or password don't match"
+        "Email or password don't match"
       )
     );
   });
