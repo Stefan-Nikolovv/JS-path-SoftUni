@@ -19,7 +19,7 @@ describe('Home Page Testing', () => {
             <Home/>
             </Router> );
             const homeElement = screen.getByTestId('homepage');
-            expect(homeElement).toHaveTextContent('Welcome To Car Tube');
+            expect(homeElement).toHaveTextContent('Welcome To Car Dealer');
     });
 
     test('HomePage H2 textContent', () => {
@@ -28,7 +28,7 @@ describe('Home Page Testing', () => {
             <Home/>
             </Router> );
             const homeElement = screen.getByTestId('homepage');
-            expect(homeElement).toHaveTextContent('To see all the listings click the link below:');
+            expect(homeElement).toHaveTextContent('Want to see all offers click the link:');
     });
     
     test("HomePage to have a link to catalog", async() => {

@@ -1,7 +1,7 @@
 export const Footer = () => {
     return (
         <footer>
-          <p data-testid = 'footerID'>© All rights reserved</p>
+          <p data-testid = 'footerID'>© All rights by Car Dealer.</p>
         </footer>
     );
 };

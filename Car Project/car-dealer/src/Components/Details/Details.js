@@ -20,7 +20,7 @@ export const Details = () => {
   
   
        const isOwner = user._id === car._ownerId;
-       console.log(car);
+ 
       const onDeleteHandler = () => {
         const conf = window.confirm("Are you sure want to delete this car?");
        
@@ -51,11 +51,11 @@ export const Details = () => {
             <span>Year:</span>{car.year}
           </li>
           <li data-testid={"priceDetails"}>
-            <span >Price:</span>{car.price}$
+            <span>Price:</span>{car.price}$
           </li>
           <li className="description-para" data-testid={"descriptionDetails"}>
           <span>Description:{car.description}</span>
-        </li>
+          </li>
         </ul>
         
         {isOwner && 

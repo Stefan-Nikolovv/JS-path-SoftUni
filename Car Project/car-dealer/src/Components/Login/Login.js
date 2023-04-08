@@ -51,9 +51,9 @@ export const Login = () => {
     }
   }, [isSubmit]);
 
-  const errorMessagePElement = {
-    color: "red",
-  };
+  // const errorMessagePElement = {
+  //   color: "red",
+  // };
 
   const validate = (user, target) => {
     const errors = {};
@@ -100,7 +100,7 @@ export const Login = () => {
             onBlur={(e) => validate(e.target.value, e.target.name)}
             onChange={onChangeLoginHandler}
           />
-          <p data-testid="emailError" style={errorMessagePElement}>
+          <p className="error" data-testid="emailError" >
             {error.email}
           </p>
           <hr/>
@@ -115,10 +115,10 @@ export const Login = () => {
             onBlur={(e) => validate(e.target.value, e.target.name)}
             onChange={onChangeLoginHandler}
           />
-          <p data-testid="passwordError" style={errorMessagePElement}>
+          <p className="error" data-testid="passwordError" >
             {error.password}
           </p>
-          <p data-testid="loginError" style={errorMessagePElement}>
+          <p className="error" data-testid="loginError" >
             {error.login}
           </p>
           <hr />
@@ -132,6 +132,7 @@ export const Login = () => {
             Dont have an account?
             <Link to="/register">Sign up</Link>.
           </label>
+          
         </div>
       </div>
     </section>

@@ -56,9 +56,7 @@ export const Register = () => {
       });
   }
 
-  const errorMessagePElement = {
-    color: "red",
-  };
+ 
 
   const validate = (user, target) => {
     const errors = {};
@@ -105,9 +103,6 @@ export const Register = () => {
           <p>Please fill in this form to create an account.</p>
           <hr />
           <label htmlFor="email">Email</label>
-          <p style={errorMessagePElement} data-testid={"emailError"}>
-            {error.email}
-          </p>
           <input
             id="email"
             type="text"
@@ -117,6 +112,9 @@ export const Register = () => {
             onChange={onChangeHandler}
             onBlur={(e) => validate(e.target.value, e.target.name)}
           />
+          <p className="error" data-testid={"emailError"}>
+            {error.email}
+          </p>
           <label htmlFor="password">Password</label>
           <input
             id="password"
@@ -127,11 +125,8 @@ export const Register = () => {
             onChange={onChangeHandler}
             onBlur={(e) => validate(e.target.value, e.target.name)}
           />
-          <p style={errorMessagePElement} data-testid={"passError"}>
+          <p className="error" data-testid={"passError"}>
             {error.password}
-          </p>
-          <p style={errorMessagePElement} data-testid={"RePassError"}>
-            {error.repeatPass}
           </p>
           <label htmlFor="repeatPass">Repeat Password</label>
           <input
@@ -143,11 +138,14 @@ export const Register = () => {
             onChange={onChangeHandler}
             onBlur={(e) => validate(e.target.value, e.target.name)}
           />
-          <p style={errorMessagePElement} data-testid={"missMatchError"}>
+          <p className="error" data-testid={"RePassError"}>
+            {error.repeatPass}
+          </p>
+          <p className="error" data-testid={"missMatchError"}>
             {error.missMatch}
           </p>
 
-          <p style={errorMessagePElement} data-testid={"reRgisterError"}>
+          <p className="error" data-testid={"reRgisterError"}>
             {error.register}
           </p>
           <hr />

@@ -36,7 +36,7 @@ export const SearchAllCars = () => {
 
   return (
     <section id="search-cars" data-testid = 'searchButtonID'>
-      <h1>Filter by Brand</h1>
+      <h1>Search by Brand</h1>
       <div className="container">
         <input
           id="search-input"

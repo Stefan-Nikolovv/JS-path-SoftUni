@@ -48,9 +48,7 @@ export const CreateCar = () => {
     });
   };
 
-  // const resultOfErrors =   Object.values(error).filter(x => x !== undefined).length
-
-  // console.log(resultOfErrors, 'result')
+ 
   useEffect(() => {
     
     if(isSubmit){
@@ -159,14 +157,6 @@ if (!carData || carData === undefined) {
       setError({ ...error, price: error.price });
 };
 
- 
-   
-
-
-
-  const errorMessagePElement = {
-    color: "red",
-  };
 
   return (
     <section id="create-listing" data-testid={"createPage"}>
@@ -184,7 +174,7 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => brandValidation(e.target.value)}
           />
-          <p style={errorMessagePElement} data-testid={"brandError"}>{error.brand}</p>
+          <p className="error" data-testid={"brandError"}>{error.brand}</p>
           <label htmlFor="model">Car Model</label>
           <input
             id="model"
@@ -194,7 +184,7 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => modelValidation(e.target.value)}
           />
-          <p style={errorMessagePElement} data-testid={"modelError"}>{error.model}</p>
+          <p className="error" data-testid={"modelError"}>{error.model}</p>
          
           <label htmlFor="description">Description</label>
           <input
@@ -205,7 +195,7 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => desciptionValidate(e.target.value)}
           />
-          <p style={errorMessagePElement} data-testid={"descriptionError"}>{error.description}</p>
+          <p className="error" data-testid={"descriptionError"}>{error.description}</p>
           
           <label htmlFor="year">Car Year</label>
           <input
@@ -216,7 +206,7 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => yearValidation(e.target.value)}
           />
-          <p style={errorMessagePElement} data-testid={"yearError"}>{error.year}</p>
+          <p className="error" data-testid={"yearError"}>{error.year}</p>
           
           <label htmlFor="imageUrl">Car Image</label>
           <input
@@ -227,7 +217,7 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => imageUrlValidation(e.target.value)}
           />
-          <p style={errorMessagePElement} data-testid={"imageUrlError"}>{error.imageUrl}</p>
+          <p className="error" data-testid={"imageUrlError"}>{error.imageUrl}</p>
           
           <label htmlFor="price">Car Price</label>
           <input
@@ -238,7 +228,7 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => priceValidation(e.target.value)}
           />
-          <p style={errorMessagePElement} data-testid={"priceError"}>{error.price}</p>
+          <p className="error" data-testid={"priceError"}>{error.price}</p>
           <hr />
           <button type="click" className="registerbtn" defaultValue="Submit">
           Submit

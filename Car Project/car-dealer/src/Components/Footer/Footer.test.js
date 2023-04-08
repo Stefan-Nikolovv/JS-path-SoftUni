@@ -34,7 +34,7 @@ describe("Test Footer", () => {
           </Router>
         );
         const footerId = component.getByTestId('footerID');
-        await waitFor(() => expect(footerId.textContent).toBe('© All rights reserved'));
+        await waitFor(() => expect(footerId.textContent).toBe('© All rights by Car Dealer.'));
     });
 
 })

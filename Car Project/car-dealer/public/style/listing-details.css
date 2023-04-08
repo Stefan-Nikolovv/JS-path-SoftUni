@@ -1,15 +1,16 @@
 .listing-props {
     margin-top: 16px;
     list-style: none;
+    background-color: rgb(231, 228, 228);
 }
 
 .listing-props>li {
-    font-size: 20px;
+    font-size: 25px;
 }
 .listing-props>li>span {
-    font-weight: 600;
+    font-weight: 750;
     display: inline-block;
-    width: 80px;
+    margin-left: 12px;
 }
 
 .listings-buttons {
@@ -20,7 +21,7 @@
 
 .button-list {
     cursor: pointer;
-    background-color: #4caf50;
+    background-color: #4c5baf;
     border: none;
     color: white;
     margin: auto;
@@ -29,6 +30,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    border-radius: 12px;
 }
 
 .details-info {
