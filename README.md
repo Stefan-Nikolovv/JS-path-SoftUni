@@ -1,1 +1,2 @@
 # softuni
+for educational purpose 
