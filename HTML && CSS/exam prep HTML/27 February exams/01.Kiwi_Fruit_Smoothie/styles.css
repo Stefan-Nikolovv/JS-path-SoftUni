@@ -1,0 +1,135 @@
+html{
+    padding: 0;
+    margin: 0;
+    font-family: 'PT Serif', serif;
+}
+*{
+    box-sizing: border-box;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+.main-wraper {
+    width: 764px;
+    height: 387px;
+}
+.main-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 5px 5px 20px 5px rgba(0,0,0,0.55);
+    background-image: url('./image/image1.png');
+    padding: 20px;
+}
+.first-section {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 50%;
+    height: 100%;
+    margin-right: 35px;
+}
+.main-title {
+    font-size: x-large;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.pointer-line {
+    border: 1px dashed green;
+    width: 100%;
+}
+
+.serves-info {
+    display: flex;
+    justify-content: space-between;
+}
+.serves {
+    margin-bottom: 35px;
+}
+.products{
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+.products > .color-product {
+    margin-bottom: 5px;
+}
+.color-product {
+    
+    color: green;
+    justify-self: start; 
+ 
+  
+}
+.product-needed {
+    margin-left: 12px;
+    color: black;
+}
+
+.product-benefits {
+    width: 100%;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+.nuttition {
+    border: 1px solid green;
+    width: 100%;
+}
+.nutrients{
+    text-align: center;
+}
+tr,th, td {
+    border: 1px solid green; 
+}
+.image {
+    width: 50%;
+    height: 100%;
+}

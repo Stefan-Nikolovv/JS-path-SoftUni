@@ -25,6 +25,10 @@ footer {
     padding-bottom: 15px;
     background-image: url('../images/showRoom.webp');
 }
+#create-form, #edit-form {
+    width: 500px;
+    height: 900px;
+}
 .error{
     font-style: italic;
     color: red;

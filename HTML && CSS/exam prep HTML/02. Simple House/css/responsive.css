@@ -1,0 +1,48 @@
+/* TODO: Add the responsive styles here */
+@media screen and (max-width: 600px) {
+    body {
+        width: 100%;
+            display: flex;
+    flex-direction: column;
+    }
+    .tm-header-inner {
+        display: block;
+    padding-left: 30px;
+    padding-right: 30px
+    }
+   .tm-nav{
+        padding: 0;
+    }
+     .tm-section-title{
+        font-size: 3rem;
+    margin: 0 auto;
+    }
+    .col-12 .text-center{
+        margin: 0 auto;
+    padding-left: 45px;
+    padding-right: 45px;
+    }
+.tm-gallery{
+        display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    }
+    .tm-gallery {
+        margin: 0;
+    }
+    .tm-gallery-page {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.tm-cta-section {
+       display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+    /* .col-12{ 
+        width: 100%;
+    } */
+   
+}

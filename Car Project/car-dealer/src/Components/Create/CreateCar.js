@@ -30,14 +30,17 @@ export const CreateCar = () => {
     desciptionValidate(createCar.description);
     yearValidation(createCar.year);
     imageUrlValidation(createCar.imageUrl);
-    priceValidation(createCar.price)
-    const resultOfErrors =  Object.values(error).filter(x => x === undefined).length
-    const resultOfCarErrors = Object.values(createCar).filter(x => x === undefined).length
-   
-    if(resultOfErrors === 6 && resultOfCarErrors === 0){
-      setSubmit(true);
-    };
+    priceValidation(createCar.price);
+    const resultOfErrors = Object.values(error).filter(
+      (x) => x === undefined
+    ).length;
+    const resultOfCarErrors = Object.values(createCar).filter(
+      (x) => x === undefined
+    ).length;
 
+    if (resultOfErrors === 6 && resultOfCarErrors === 0) {
+      setSubmit(true);
+    }
   };
 
   const onChangeHandler = (e) => {
@@ -48,15 +51,12 @@ export const CreateCar = () => {
     });
   };
 
- 
   useEffect(() => {
-    
-    if(isSubmit){
+    if (isSubmit) {
       const { brand, model, description, year, imageUrl, price } = createCar;
       carService
         .createCar(brand, model, description, year, imageUrl, price)
         .then((response) => {
-          
           currentCar(response);
           navigate("/catalog");
         })
@@ -64,99 +64,83 @@ export const CreateCar = () => {
           console.error(err);
         });
     }
-    
-  },[isSubmit])
-  
-
+  }, [isSubmit]);
 
   function brandValidation(carData) {
-
     if (!carData || carData === undefined) {
-         error.brand = "Brand is required!";
-       } else if (carData.length <= 3) {
-         error.brand = "Brand must be at least 3 characters!";
-       } else {
-         error.brand = undefined
-         setError({ ...error });
-       };
-       setError({ ...error, brand: error.brand });
-     };
+      error.brand = "Brand is required!";
+    } else if (carData.length <= 3) {
+      error.brand = "Brand must be at least 3 characters!";
+    } else {
+      error.brand = undefined;
+      setError({ ...error });
+    }
+    setError({ ...error, brand: error.brand });
+  }
 
+  function modelValidation(carData) {
+    if (!carData || carData === undefined) {
+      error.model = "Model is required!";
+    } else if (carData.length <= 2) {
+      error.model = "Model must be at least 3 characters!";
+    } else if (carData.length >= 12) {
+      error.model = "Model must be shorter then 12 characters!";
+    } else {
+      error.model = undefined;
+      setError({ ...error });
+    }
+    setError({ ...error, model: error.model });
+  }
 
-  
+  function desciptionValidate(carData) {
+    if (!carData || carData === undefined) {
+      error.description = "Description is required!";
+    } else if (carData.length <= 10) {
+      error.description = "Description must be at least 10 characters!";
+    } else if (carData.length >= 100) {
+      error.description = "Description must be shorter then 50 characters!";
+    } else {
+      error.description = undefined;
+      setError({ ...error });
+    }
+    setError({ ...error, description: error.description });
+  }
 
-    function modelValidation(carData) {
-      if (!carData || carData === undefined) {
-        error.model = "Model is required!";
-      } else if (carData.length <= 2) {
-        error.model = "Model must be at least 3 characters!";
-      } else if (carData.length >= 12) {
-        error.model = "Model must be shorter then 12 characters!";
-      } else {
-        error.model = undefined
-        setError({ ...error });
-      };
-      setError({ ...error, model: error.model });
-}
-  
-
-  
-    function desciptionValidate(carData) {
-        if (!carData || carData === undefined) {
-        error.description = "Description is required!";
-      } else if (carData.length <= 10) {
-        error.description = "Description must be at least 10 characters!";
-      } else if (carData.length >= 100) {
-        error.description = "Description must be shorter then 50 characters!";
-      } else {
-        error.description = undefined
-        setError({ ...error });
-      };
-      setError({ ...error, description: error.description });
-      }
- 
-
-  
   function yearValidation(carData) {
-  if (carData === "" || carData === undefined) {
-        error.year = "Year is required!";
-      } else if (carData <= 0) {
-        error.year = "Year should be a postive Number.";
-      } else {
-        error.year = undefined;
-        setError({ ...error });
-      };
-      setError({ ...error, year: error.year });
-}
-
-
-  
-    function imageUrlValidation(carData) {
-if (!carData || carData === undefined) {
-        error.imageUrl = "Image is required!";
-      } else if (!carData.startsWith("http")) {
-        error.imageUrl = "Image should starts with HTTP or HTTPS.";
-      } else {
-       error.imageUrl = undefined;
-        setError({ ...error });
-      };
-      setError({ ...error, imageUrl: error.imageUrl });
-}
-
-
-  
-   function priceValidation(carData) {
     if (carData === "" || carData === undefined) {
-        error.price = "Price is required!";
-      } else if (carData <= 0) {
-        error.price = "Price cant be a negative number or Zero.";
-      } else {
-        error.price = undefined;
-        setError({ ...error });
-      };
-      setError({ ...error, price: error.price });
-};
+      error.year = "Year is required!";
+    } else if (carData <= 0) {
+      error.year = "Year should be a postive Number.";
+    } else {
+      error.year = undefined;
+      setError({ ...error });
+    }
+    setError({ ...error, year: error.year });
+  }
 
+  function imageUrlValidation(carData) {
+    if (!carData || carData === undefined) {
+      error.imageUrl = "Image is required!";
+    } else if (!carData.startsWith("http")) {
+      error.imageUrl = "Image should starts with HTTP or HTTPS.";
+    } else {
+      error.imageUrl = undefined;
+      setError({ ...error });
+    }
+    setError({ ...error, imageUrl: error.imageUrl });
+  }
+
+  function priceValidation(carData) {
+    if (carData === "" || carData === undefined) {
+      error.price = "Price is required!";
+    } else if (carData <= 0) {
+      error.price = "Price cant be a negative number or Zero.";
+    } else {
+      error.price = undefined;
+      setError({ ...error });
+    }
+    setError({ ...error, price: error.price });
+  }
 
   return (
     <section id="create-listing" data-testid={"createPage"}>
@@ -174,7 +158,9 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => brandValidation(e.target.value)}
           />
-          <p className="error" data-testid={"brandError"}>{error.brand}</p>
+          <p className="error" data-testid={"brandError"}>
+            {error.brand}
+          </p>
           <label htmlFor="model">Car Model</label>
           <input
             id="model"
@@ -184,8 +170,10 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => modelValidation(e.target.value)}
           />
-          <p className="error" data-testid={"modelError"}>{error.model}</p>
-         
+          <p className="error" data-testid={"modelError"}>
+            {error.model}
+          </p>
+
           <label htmlFor="description">Description</label>
           <input
             type="text"
@@ -195,8 +183,10 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => desciptionValidate(e.target.value)}
           />
-          <p className="error" data-testid={"descriptionError"}>{error.description}</p>
-          
+          <p className="error" data-testid={"descriptionError"}>
+            {error.description}
+          </p>
+
           <label htmlFor="year">Car Year</label>
           <input
             type="number"
@@ -206,8 +196,10 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => yearValidation(e.target.value)}
           />
-          <p className="error" data-testid={"yearError"}>{error.year}</p>
-          
+          <p className="error" data-testid={"yearError"}>
+            {error.year}
+          </p>
+
           <label htmlFor="imageUrl">Car Image</label>
           <input
             type="text"
@@ -217,8 +209,10 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => imageUrlValidation(e.target.value)}
           />
-          <p className="error" data-testid={"imageUrlError"}>{error.imageUrl}</p>
-          
+          <p className="error" data-testid={"imageUrlError"}>
+            {error.imageUrl}
+          </p>
+
           <label htmlFor="price">Car Price</label>
           <input
             type="number"
@@ -228,10 +222,12 @@ if (!carData || carData === undefined) {
             onChange={onChangeHandler}
             onBlur={(e) => priceValidation(e.target.value)}
           />
-          <p className="error" data-testid={"priceError"}>{error.price}</p>
+          <p className="error" data-testid={"priceError"}>
+            {error.price}
+          </p>
           <hr />
           <button type="click" className="registerbtn" defaultValue="Submit">
-          Submit
+            Submit
           </button>
         </form>
       </div>

@@ -1,0 +1,156 @@
+html {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+*{
+    box-sizing: border-box;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+.main-wraper {
+    width: 900px;
+    height: 500px;
+    margin: 0 auto;
+}
+.main-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    border: #b1b1b1;
+    box-shadow: 0px 2px 11px 3px rgba(0,0,0,0.53);
+    overflow: hidden;
+}
+
+.first-section{
+    width: 50%;
+    height: 100%;
+    position: relative;
+    background-color: black;
+}
+
+.image{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: black;
+    z-index: 0;
+    object-fit: cover; 
+    opacity: 0.5;
+}
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    padding: 25px 32px;
+}
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    font-size: larger;
+    color: white;
+    font-weight: bolder;
+}
+.title {
+    font-size: xx-large;
+    color: white;
+    text-align: center;
+    margin-top: 154px;
+}
+.title-ext{
+   color: white;
+   width: 100%;
+    font-size: x-large;
+}
+.icons {
+    margin-top: 159px;
+    color: white;
+}
+
+.secount-section{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 61px 0px;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+}
+.login-form > label {
+    color: #b1b1b1;
+    opacity: 0.5;
+    margin-bottom: 15px;
+}
+.login-form > input {
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    margin-bottom: 10px;
+    padding-left: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.registration-btn {
+    display: flex;
+    flex-direction: initial;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.reg-btn {
+    font-size: large;
+    background-color: black;
+    color: white;
+    border-radius: 40px;
+    padding-left: 61px;
+    padding-right: 61px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+.footer-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: initial;
+    color: #b1b1b1;
+    text-decoration-line: underline;
+}
+.fa-github{
+    margin: 0 15px 0;
+}

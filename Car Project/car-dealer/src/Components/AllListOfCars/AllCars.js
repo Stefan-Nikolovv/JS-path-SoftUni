@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { CarList } from "./CarList/CarList";
 import { useContext } from "react";
 import { CarContext } from "../../contexts/carContext";
@@ -34,3 +34,41 @@ return () => currentCar([]);
     </section>
   );
 };
+
+
+// export class AllCars extends React.Component {
+//   state = {car: []}
+//   constructor(props){
+//      super(props);
+    
+//   }
+//   componentDidMount() {
+
+//     carService.getAll()
+//     .then(result => {
+//       this.setState( 
+//       this.state.car = result
+//       );
+//     })
+//     .catch((err) => {
+//       console.log(err)
+//     })
+//   }
+
+//   render(){ 
+    
+//  return( 
+//   <section id="car-listings" data-testid='carList'>
+//   <h1>Car Listings</h1>
+//   <div className="listings">
+//     {this.state.car.length > 0 
+//     ?
+//     this.state.car.map(x => <CarList key={x._id} car={x}/>) 
+//     :
+//     <p className="no-cars" data-testid='carMessage'>No cars in database.</p>
+//     }
+    
+//   </div>
+// </section>)
+//   }
+// }

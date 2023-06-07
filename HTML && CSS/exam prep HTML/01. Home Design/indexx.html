@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .holder {
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+        }
+
+        .item {
+            border: 1px solid #000;
+            /* TODO: Check what happens when you don't have display:flex and flex-direction:column */
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px;
+            width: 300px;
+        }
+
+        .item-image {
+            max-width: 100%;
+        }
+
+        .item-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .item-content-header {
+            text-align: center;
+        }
+
+        .item-content-text {
+            background-color: pink;
+            flex-grow: 1;
+        }
+
+        .item-content-footer {
+            background-color: #ccc;
+            text-align: center;
+        }
+
+        .item-link-arrow {
+            display: inline-block;
+            background-color: red;
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="holder">
+        <div class="item">
+            <img class="item-image" src="https://placehold.co/600x400" />
+            <div class="item-content">
+                <header class="item-content-header">
+                    <h3>Heading</h3>
+                </header>
+
+                <div class="item-content-text">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta nam non saepe ullam error sit,
+                        natus
+                        iusto expedita perferendis nostrum tenetur porro, assumenda quaerat repellat tempora laudantium,
+                        dignissimos consequatur! Fugiat.
+                    </p>
+                </div>
+
+                <footer class="item-content-footer">
+
+                    <a class="item-link" href="#">
+                        Link text
+                        <span class="item-link-arrow">></span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+
+        <div class="item">
+            <img class="item-image" src="https://placehold.co/600x400" />
+            <div class="item-content">
+                <header class="item-content-header">
+                    <h3>Heading with long content to check what is happening when text is flowing on next line</h3>
+                </header>
+
+                <div class="item-content-text">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    </p>
+                </div>
+
+                <footer class="item-content-footer">
+                    <a class="item-link" href="#">
+                        Link text
+                        <span class="item-link-arrow">></span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+
+        <div class="item">
+            <img class="item-image" src="https://placehold.co/600x400" />
+            <div class="item-content">
+                <header class="item-content-header">
+                    <h3>Heading</h3>
+                </header>
+
+                <div class="item-content-text">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta nam non saepe ullam error sit,
+                        natus
+                        iusto expedita perferendis nostrum tenetur porro, assumenda quaerat repellat tempora laudantium,
+                        dignissimos consequatur! Fugiat.
+                    </p>
+                </div>
+
+                <footer class="item-content-footer">
+                    <a class="item-link" href="#">
+                        Link text
+                        <span class="item-link-arrow">></span>
+                    </a>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div>Some other content</div>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin: 0;
+    padding: 0;
+}
+
+.main-content{
+    display: flex;
+    border-radius: 12px;
+    border: 1px solid  grey;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px grey;
+    width: 1240px;
+    height: 100%;
+    margin: 0 auto;
+    background-color: rgb(244, 244, 236);
+}
+.image {
+    width: 50%;
+    overflow: hidden;
+    
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+.title{
+    margin-bottom: 86px;
+    margin-top: 86px;
+    text-transform: uppercase;
+    font-size: xx-large;
+    
+}
+
+.metric-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 100%;
+}
+
+.standart-units{
+    padding: 9px 16px ;
+    border-radius: 8px;
+    cursor: pointer;
+    max-width: 50%;
+    background-color: rgb(222, 220, 220);
+}
+.metric-units{
+    border-radius: 8px;
+    padding: 9px 35px;
+    max-width: 50%;
+    cursor: pointer;
+    background-color: rgb(222, 220, 220);
+}
+.standart-units:focus{
+    background-color: chartreuse;
+}
+.metric-units:focus{
+    background-color: chartreuse;
+}
+.gender {
+    margin: 25px 0 25px;
+    max-width: 100%;
+}
+.gender-opitons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.type-gender {
+ width: 25%;  
+ margin: 0px 43px 0; 
+}
+.old {
+    width: 25%;
+    margin-right: 12px;
+}
+
+.weight {
+    margin: 25px 0 25px;
+}
+.weight-pounds{
+    width: 80%;
+    margin:  0 auto; 
+}
+
+
+.feet {
+    width: 40%;
+    margin-right: 22px;
+    border: 1px solid black;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.inches{
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.height {
+    margin: 25px 0 25px;
+}
+.footer-btn{
+    margin: 80px 0;
+}
+.calculate {
+    width: 90%;
+    box-shadow: 5px 5px 5px grey;
+    border-radius: 16px;
+    padding: 7px;
+    overflow: hidden;
+    background-color: dodgerblue;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+

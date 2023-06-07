@@ -1,0 +1,83 @@
+@media screen and (max-width: 600px) {
+
+    body,
+    main, section {
+        width: 600px;
+    }
+    .left-to-right:first-child {
+        height: 539px;
+        padding: 54px;
+        background: linear-gradient(0deg, rgba(29, 63, 97, 0.3), rgba(29, 63, 97, 0.2)), url(img/spot-bg-01.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        clip-path: polygon(0px 0px, 100% 0px, 100% 84%, 0px 100%);
+    }
+
+    main .left-to-right article {
+        display: flex;
+        flex-direction: column;
+        padding: 15px 39px;
+        color: #6c6c6c;
+        border-radius: 19%;
+        background-color: white;
+        justify-content: center;
+        width: 62%;
+    }
+    main .left-to-right article button {
+        display: none;
+    }
+    section {
+        display: flex;
+        flex-direction: column;
+    }
+    section article button {
+        display: none;
+    }
+    header h1 {
+        font-size: 2rem;
+        margin: 20px auto;
+        color: #1D3F61;
+    }
+    header p {
+        width: 90%;
+        font-size: 1.2rem;
+        color: #1D3F61;
+    }
+    main section:nth-child(2) article, main section:nth-child(4) article {
+        display: flex;
+        flex-direction: column;
+        margin-left: 57px;
+        justify-content: center;
+        margin-right: 57px;
+    }
+    main section:nth-child(2) article img, main section:nth-child(4) article img {
+        width: 100%;
+    }
+    main section.left-to-right:nth-child(3) {
+        display: inline-flex;
+        width: 100%;
+        padding-top: 204px;
+        background: linear-gradient(0deg, rgba(29, 63, 97, 0.3), rgba(29, 63, 97, 0.2)), url(img/spot-bg-02.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        clip-path: polygon(0px 0px, 100% 14%, 100% 86%, 0px 100%);
+        align-items: center;
+    }
+    form {
+        display: flex;
+    flex-direction: column;
+        width: 100%;
+}
+    }
+    #name, #email ,#message{
+        display: inline;
+        width: 100%;
+    }
+    form > label {
+        width: 100%;
+    }
+    form label[for="send"]{
+        display: flex;
+        align-items: center;
+    } 
+

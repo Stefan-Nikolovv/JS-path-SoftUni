@@ -1,0 +1,75 @@
+
+@media ( width <= 600px){
+    body {
+       max-width: 600px;
+    }
+    header, main ,aside, section, footer {
+        width: 600px
+    }
+    #top-bar ul:nth-child(1) li:last-child {
+        display: none;
+    }
+    #main-menu{
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+    }
+    #main-menu img {
+        width: 160px;
+        height: 55px;
+    }
+    #main-menu ul {
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    }
+    #main-menu ul > li {
+        border: 1px solid red;
+        width: 100%;
+    }
+    #main-menu ul > li:not(:last-child){
+        margin-bottom: 12px;
+    }
+    #main {
+        display: flex;
+    /* width: 100%; */
+    flex-direction: column;
+    }
+    #left-aside {
+        display: flex;
+        flex-direction: row;
+    }
+    #left-aside > article {
+        width: 33.33%;
+        border: none;
+    }
+    #news {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    #news > article {
+        width: 90%;
+    }
+    #right-aside {
+        display: flex;
+    flex-direction: column;
+    /* max-width: 100%; */
+    width: auto;
+    margin-left: 36px;
+    }
+    footer {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+    }
+    footer > ul {
+        width: 100%;
+    }
+    footer  ul:not(:last-child) {
+        margin-bottom: 0;
+    }
+}
