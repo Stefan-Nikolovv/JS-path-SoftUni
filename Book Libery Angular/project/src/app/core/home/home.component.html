@@ -1,7 +1,8 @@
 <section id="dashboard-page" class="dashboard">
   <h1>Dashboard</h1>
   <!-- Display ul: with list-items for All books (If any) -->
-  <ul class="other-books-list">
+  {bookList}
+  <ul class="other-books-list" *ngIf ="bookList">
     <li class="otherBooks" *ngFor="let book of bookList; let i = index">
       <h3>{{ book.title }}</h3>
       <p>Type: {{ book.type }}</p>

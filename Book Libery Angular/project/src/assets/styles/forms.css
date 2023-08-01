@@ -26,7 +26,7 @@ form fieldset {
 }
 form legend {
 	border: 2px solid #666;
-	background-color: #234465;
+	background-color: #ee7f82;
 	color: white;
 	border-radius: 1rem;
 	box-shadow: 0 0 1rem 0.1rem rgba(0, 0, 0, 0.1);
@@ -142,5 +142,11 @@ form textarea:focus {
 
 .field .input:hover {
 	background: #c4c1c1;
+}
+.form-btn {
+	padding: 13px;
+    text-transform: uppercase;
+	background-color: #ee7f82;
+	font-weight: 700;
 }
 
