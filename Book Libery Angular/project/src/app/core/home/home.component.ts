@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   get isLoggedIn() {
     return this.authService.isLoggedIn;
   }
-  bookList: IBook[] | null = null;
+  bookList: IBook[] | any;
   errorFetcingData = false;
   dataBooks = false;
   constructor(private apiService: ApiService, private authService: AuthService){}
@@ -22,7 +22,9 @@ export class HomeComponent implements OnInit {
     this.apiService.loadAll()
     .subscribe({
       next: (value) => {
+        
         this.bookList = value;
+        console.log(!this.bookList)
       },
       error: (err) => {
         this.errorFetcingData = true;

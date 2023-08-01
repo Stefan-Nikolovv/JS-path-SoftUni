@@ -11,7 +11,7 @@ import { IBook } from 'src/app/shared/interfaces';
 export class MybookComponent implements OnInit {
 
 
-  bookList: IBook[] | null = null;
+  bookList: IBook[] | any;
   errorFetcingData = false;
   dataBooks = false;
   constructor(private apiService: ApiService, private authService: AuthService){}

@@ -1,16 +1,17 @@
 <section id="dashboard-page" class="dashboard">
   <h1>Dashboard</h1>
   <!-- Display ul: with list-items for All books (If any) -->
-  {bookList}
-  <ul class="other-books-list" *ngIf ="bookList">
+  
+  <ul class="other-books-list" *ngIf ="bookList.length">
     <li class="otherBooks" *ngFor="let book of bookList; let i = index">
       <h3>{{ book.title }}</h3>
       <p>Type: {{ book.type }}</p>
       <img class="img" src="{{book.imageUrl}}"><img>
       <a class="button" href="details/{{ book._id }}">Details</a>
     </li>
+
   </ul>
 
-  <!-- Display paragraph: If there are no books in the database -->
-  <p class="no-books" *ngIf="!bookList">No books in database!</p>
+
+  <p class="no-books" *ngIf=!bookList.length>No books in database!</p>
 </section>
