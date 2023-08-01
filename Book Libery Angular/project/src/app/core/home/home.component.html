@@ -4,7 +4,7 @@
   
   <ul class="other-books-list" *ngIf ="bookList.length">
     <li class="otherBooks" *ngFor="let book of bookList; let i = index">
-      <h3>{{ book.title }}</h3>
+      <h3> Title:{{ book.title }}</h3>
       <p>Type: {{ book.type }}</p>
       <img class="img" src="{{book.imageUrl}}"><img>
       <a class="button" href="details/{{ book._id }}">Details</a>
