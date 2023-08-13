@@ -39,11 +39,11 @@ export class DetailsComponent implements OnInit {
       this.apiService.getOneBook(this.activatedRoute.snapshot.params?.["id"])
       .subscribe({
         next: (value) => {
-          console.log(this.authService.savedUser._id, value.userId._id)
-          if(value.userId._id === this.authService.savedUser._id){
+          console.log(this.authService.savedUser?._id, value[0].userId )
+          if(value[0].userId === this.authService.savedUser?._id){
            this.owner = true;
           }
-          this.bookList = [value];
+          this.bookList = value;
         },
         error: (err) => {
           this.errorFetcingData = true;

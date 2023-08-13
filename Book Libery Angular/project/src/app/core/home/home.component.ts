@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
       next: (value) => {
         
         this.bookList = value;
-        console.log(!this.bookList)
+        
       },
       error: (err) => {
         this.errorFetcingData = true;

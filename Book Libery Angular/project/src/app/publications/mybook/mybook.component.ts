@@ -20,10 +20,11 @@ export class MybookComponent implements OnInit {
     this.apiService.loadMyAllBooks()
     .subscribe({
       next: (value) => {
-    
+       console.log(value)
         this.bookList = value;
       },
       error: (err) => {
+       
         this.errorFetcingData = true;
         this.dataBooks = true
       }

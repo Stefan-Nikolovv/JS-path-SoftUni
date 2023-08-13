@@ -37,15 +37,15 @@ export class EditComponent implements OnInit {
 
   
 
-  bookList: IBook[] | null = null;
+  bookList: IBook[] | any;
   errorFetcingData = false
     ngOnInit(): void {
       this.apiService.getOneBook(this.activatedRoute.snapshot.params?.["id"])
       .subscribe({
         next: (value) => {
-       
-          this.bookList = [value];
-          console.log(this.bookList[0].type)
+          
+          this.bookList = [...value];
+          
           this.validationForm.get(['title'])?.setValue(this.bookList[0].title); 
           this.validationForm.get(['description'])?.setValue(this.bookList[0].description); 
           this.validationForm.get(['imageUrl'])?.setValue(this.bookList[0].imageUrl); 

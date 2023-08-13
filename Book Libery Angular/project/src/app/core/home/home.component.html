@@ -1,5 +1,5 @@
 <section id="dashboard-page" class="dashboard">
-  <h1>Dashboard</h1>
+  <h1>Book Libery</h1>
   <!-- Display ul: with list-items for All books (If any) -->
   
   <ul class="other-books-list" *ngIf ="bookList.length">
@@ -12,6 +12,16 @@
 
   </ul>
 
-
-  <p class="no-books" *ngIf=!bookList.length>No books in database!</p>
+  <div class="no-books" *ngIf=!bookList.length>
+    <p>No books yet created!</p>
+    <p>Want to create one?</p>
+    <div *ngIf="isLoggedIn">
+      <a class="button" href="/create">Click here.....</a>
+    </div>
+    <div *ngIf="!isLoggedIn">
+      <a class="button" href="/auth/login">Click here.....</a>
+    </div>
+   
+  </div>
+  
 </section>
