@@ -1,2 +1,2 @@
-# softuni
+# softuni / JS path
 for educational purpose 
